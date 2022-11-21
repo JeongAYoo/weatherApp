@@ -18,6 +18,8 @@
 		0765B21529227312009AC8A8 /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B21429227312009AC8A8 /* MyListViewController.swift */; };
 		0765B2182923CC1A009AC8A8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0765B2172923CC1A009AC8A8 /* SnapKit */; };
 		0765B21A292B898C009AC8A8 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B219292B898C009AC8A8 /* TutorialViewController.swift */; };
+		0765B21D292B90D0009AC8A8 /* searchMockUpCut.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */; };
+		0765B21E292B90D0009AC8A8 /* mainMockUpCut.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		0765B212292272E8009AC8A8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0765B21429227312009AC8A8 /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
 		0765B219292B898C009AC8A8 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchMockUpCut.png; sourceTree = "<group>"; };
+		0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainMockUpCut.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +78,8 @@
 				0765B20029224833009AC8A8 /* Assets.xcassets */,
 				0765B1FB29224832009AC8A8 /* MainViewController.swift */,
 				0765B21429227312009AC8A8 /* MyListViewController.swift */,
+				0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */,
+				0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */,
 				0765B212292272E8009AC8A8 /* SettingViewController.swift */,
 				0765B20529224833009AC8A8 /* Info.plist */,
 			);
@@ -148,7 +154,9 @@
 			files = (
 				0765B20F292271EC009AC8A8 /* Main.storyboard in Resources */,
 				0765B20429224833009AC8A8 /* LaunchScreen.storyboard in Resources */,
+				0765B21E292B90D0009AC8A8 /* mainMockUpCut.png in Resources */,
 				0765B20129224833009AC8A8 /* Assets.xcassets in Resources */,
+				0765B21D292B90D0009AC8A8 /* searchMockUpCut.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
