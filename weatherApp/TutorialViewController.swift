@@ -1,19 +1,20 @@
 //
-//  ViewController.swift
+//  TutorialViewController.swift
 //  weatherApp
 //
-//  Created by Jade Yoo on 2022/11/14.
+//  Created by Jade Yoo on 2022/11/21.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
+class TutorialViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
+    
 
 
 }
-
