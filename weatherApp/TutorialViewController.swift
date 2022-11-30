@@ -40,7 +40,7 @@ class TutorialViewController: UIViewController {
         pageControl.pageIndicatorTintColor = .lightGray
         pageControl.currentPageIndicatorTintColor = .black
         
-        
+        //left, right -> leading, trailing 으로 추후 수정하기
         doneButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(70)
             make.right.equalToSuperview().offset(-20)
@@ -94,6 +94,9 @@ class TutorialViewController: UIViewController {
     }
     
     @IBAction func doneButtonClicked(_ sender: UIButton) {
+        let vc = AuthCheckViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     @objc func respondToSwipeGesture(_ gesture: UIGestureRecognizer) {

@@ -15,11 +15,12 @@
 		0765B20D29226FE0009AC8A8 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0765B20C29226FE0009AC8A8 /* IQKeyboardManagerSwift */; };
 		0765B20F292271EC009AC8A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0765B1FD29224832009AC8A8 /* Main.storyboard */; };
 		0765B213292272E8009AC8A8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B212292272E8009AC8A8 /* SettingViewController.swift */; };
-		0765B21529227312009AC8A8 /* MyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B21429227312009AC8A8 /* MyListViewController.swift */; };
+		0765B21529227312009AC8A8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B21429227312009AC8A8 /* SearchViewController.swift */; };
 		0765B2182923CC1A009AC8A8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0765B2172923CC1A009AC8A8 /* SnapKit */; };
 		0765B21A292B898C009AC8A8 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B219292B898C009AC8A8 /* TutorialViewController.swift */; };
 		0765B21D292B90D0009AC8A8 /* searchMockUpCut.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */; };
 		0765B21E292B90D0009AC8A8 /* mainMockUpCut.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */; };
+		0799C59C2934C7C000E3FDC7 /* AuthCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +33,11 @@
 		0765B20329224833009AC8A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0765B20529224833009AC8A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0765B212292272E8009AC8A8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		0765B21429227312009AC8A8 /* MyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyListViewController.swift; sourceTree = "<group>"; };
+		0765B21429227312009AC8A8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0765B219292B898C009AC8A8 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchMockUpCut.png; sourceTree = "<group>"; };
 		0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainMockUpCut.png; sourceTree = "<group>"; };
+		0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCheckViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,12 +77,13 @@
 				0765B20229224833009AC8A8 /* LaunchScreen.storyboard */,
 				0765B1FD29224832009AC8A8 /* Main.storyboard */,
 				0765B219292B898C009AC8A8 /* TutorialViewController.swift */,
-				0765B20029224833009AC8A8 /* Assets.xcassets */,
+				0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */,
 				0765B1FB29224832009AC8A8 /* MainViewController.swift */,
-				0765B21429227312009AC8A8 /* MyListViewController.swift */,
+				0765B21429227312009AC8A8 /* SearchViewController.swift */,
+				0765B212292272E8009AC8A8 /* SettingViewController.swift */,
+				0765B20029224833009AC8A8 /* Assets.xcassets */,
 				0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */,
 				0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */,
-				0765B212292272E8009AC8A8 /* SettingViewController.swift */,
 				0765B20529224833009AC8A8 /* Info.plist */,
 			);
 			path = weatherApp;
@@ -169,7 +172,8 @@
 			files = (
 				0765B213292272E8009AC8A8 /* SettingViewController.swift in Sources */,
 				0765B1FC29224832009AC8A8 /* MainViewController.swift in Sources */,
-				0765B21529227312009AC8A8 /* MyListViewController.swift in Sources */,
+				0799C59C2934C7C000E3FDC7 /* AuthCheckViewController.swift in Sources */,
+				0765B21529227312009AC8A8 /* SearchViewController.swift in Sources */,
 				0765B1F829224832009AC8A8 /* AppDelegate.swift in Sources */,
 				0765B21A292B898C009AC8A8 /* TutorialViewController.swift in Sources */,
 				0765B1FA29224832009AC8A8 /* SceneDelegate.swift in Sources */,
@@ -329,7 +333,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -360,7 +364,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
