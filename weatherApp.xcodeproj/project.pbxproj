@@ -21,6 +21,8 @@
 		0765B21D292B90D0009AC8A8 /* searchMockUpCut.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */; };
 		0765B21E292B90D0009AC8A8 /* mainMockUpCut.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */; };
 		0799C59C2934C7C000E3FDC7 /* AuthCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */; };
+		07B92759293BE08F009601F5 /* PreviewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B92758293BE08F009601F5 /* PreviewUI.swift */; };
+		07B9275E293BE274009601F5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9275D293BE274009601F5 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchMockUpCut.png; sourceTree = "<group>"; };
 		0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainMockUpCut.png; sourceTree = "<group>"; };
 		0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCheckViewController.swift; sourceTree = "<group>"; };
+		07B92758293BE08F009601F5 /* PreviewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewUI.swift; sourceTree = "<group>"; };
+		07B9275D293BE274009601F5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,21 +76,47 @@
 		0765B1F629224832009AC8A8 /* weatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				07B92757293BE07D009601F5 /* Extensions */,
+				07B9275C293BE1CF009601F5 /* Controller */,
+				07B9275B293BE1AB009601F5 /* View */,
 				0765B1F729224832009AC8A8 /* AppDelegate.swift */,
 				0765B1F929224832009AC8A8 /* SceneDelegate.swift */,
 				0765B20229224833009AC8A8 /* LaunchScreen.storyboard */,
 				0765B1FD29224832009AC8A8 /* Main.storyboard */,
-				0765B219292B898C009AC8A8 /* TutorialViewController.swift */,
-				0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */,
-				0765B1FB29224832009AC8A8 /* MainViewController.swift */,
-				0765B21429227312009AC8A8 /* SearchViewController.swift */,
-				0765B212292272E8009AC8A8 /* SettingViewController.swift */,
 				0765B20029224833009AC8A8 /* Assets.xcassets */,
 				0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */,
 				0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */,
 				0765B20529224833009AC8A8 /* Info.plist */,
 			);
 			path = weatherApp;
+			sourceTree = "<group>";
+		};
+		07B92757293BE07D009601F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				07B92758293BE08F009601F5 /* PreviewUI.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		07B9275B293BE1AB009601F5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				07B9275D293BE274009601F5 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		07B9275C293BE1CF009601F5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0765B219292B898C009AC8A8 /* TutorialViewController.swift */,
+				0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */,
+				0765B1FB29224832009AC8A8 /* MainViewController.swift */,
+				0765B21429227312009AC8A8 /* SearchViewController.swift */,
+				0765B212292272E8009AC8A8 /* SettingViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,10 +201,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0765B213292272E8009AC8A8 /* SettingViewController.swift in Sources */,
+				07B9275E293BE274009601F5 /* MainView.swift in Sources */,
 				0765B1FC29224832009AC8A8 /* MainViewController.swift in Sources */,
 				0799C59C2934C7C000E3FDC7 /* AuthCheckViewController.swift in Sources */,
 				0765B21529227312009AC8A8 /* SearchViewController.swift in Sources */,
 				0765B1F829224832009AC8A8 /* AppDelegate.swift in Sources */,
+				07B92759293BE08F009601F5 /* PreviewUI.swift in Sources */,
 				0765B21A292B898C009AC8A8 /* TutorialViewController.swift in Sources */,
 				0765B1FA29224832009AC8A8 /* SceneDelegate.swift in Sources */,
 			);

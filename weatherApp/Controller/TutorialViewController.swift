@@ -128,3 +128,16 @@ class TutorialViewController: UIViewController {
         }
     }
 }
+
+//#if DEBUG
+//import SwiftUI
+//
+//@available(iOS 13, *)
+//struct TutorialVCPreview: PreviewProvider {
+//    
+//    static var previews: some View {
+//        // view controller using programmatic UI
+//        TutorialViewController().toPreview()
+//    }
+//}
+//#endif
