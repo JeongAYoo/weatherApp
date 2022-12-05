@@ -29,7 +29,7 @@ class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
         button.tintColor = .white
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 25
-        button.addTarget(button.self, action: #selector(getLocationUsagePermission), for: .touchUpInside)
+        button.addTarget(self, action: #selector(getLocationUsagePermission), for: .touchUpInside)
         
         return button
     }()
@@ -41,7 +41,7 @@ class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
         button.tintColor = .black
         button.backgroundColor = .lightGray
         button.layer.cornerRadius = 25
-        button.addTarget(button.self, action: #selector(noButtonClicked), for: .touchUpInside)
+        button.addTarget(self, action: #selector(noButtonClicked), for: .touchUpInside)
         
         return button
     }()

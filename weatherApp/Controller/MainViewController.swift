@@ -16,6 +16,8 @@ class MainViewController: UIViewController {
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
     
+    var weatherKitManager = WeatherKitManager()
+    
     override func loadView() {
         view = mainView
     }
@@ -26,10 +28,13 @@ class MainViewController: UIViewController {
         // 테스트
         print(latitude, longitude)  // 일단은 이전 뷰컨에서 전달받음
         
-        let shared = WeatherService.init()
-        let service = WeatherService.shared
-        var location = CLLocation(latitude: latitude!, longitude: longitude!)
-        
+//        let shared = WeatherService.init()
+//        let service = WeatherService.shared
+//        var location = CLLocation(latitude: latitude!, longitude: longitude!)
+        Task {
+            try await weatherKitManager.getWeather()
+        }
+
         
     }
 
