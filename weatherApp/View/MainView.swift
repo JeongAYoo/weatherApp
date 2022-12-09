@@ -22,7 +22,10 @@ final class MainView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        self.layer.cornerRadius = 5.0
+        self.clipsToBounds = true
         setupView()
+        //updateConstraints()
     }
     
     required init?(coder: NSCoder) {

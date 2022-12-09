@@ -48,13 +48,13 @@ class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
     
     // 버튼 2개 담을 스택뷰
     let stackView: UIStackView = {
-           let stackView = UIStackView()
+        let stackView = UIStackView()
         stackView.axis = .vertical
-           stackView.alignment = .fill
-           stackView.distribution = .fillEqually
-           stackView.spacing = 15
-           
-           return stackView
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.spacing = 15
+        
+        return stackView
     }()
     
     var locationManager: CLLocationManager!
@@ -100,7 +100,7 @@ class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
     // yes 버튼 클릭시 위치 권한 허용 묻기
     @objc func getLocationUsagePermission() {
         locationManager = CLLocationManager()
-
+        
         locationManager.delegate = self
         self.locationManager.requestWhenInUseAuthorization()
         
@@ -129,22 +129,22 @@ class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            switch status {
-            case .authorizedAlways, .authorizedWhenInUse:
-                print("GPS 권한 설정됨")
-                break
-            case .restricted, .notDetermined:
-                print("GPS 권한 설정되지 않음")
-                getLocationUsagePermission()
-                presentSearchView()
-            case .denied:
-                print("GPS 권한 요청 거부됨")
-                getLocationUsagePermission()
-                presentSearchView()
-                
-            default:
-                print("GPS: Default")
-            }
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("GPS 권한 설정됨")
+            break
+        case .restricted, .notDetermined:
+            print("GPS 권한 설정되지 않음")
+            getLocationUsagePermission()
+            presentSearchView()
+        case .denied:
+            print("GPS 권한 요청 거부됨")
+            getLocationUsagePermission()
+            presentSearchView()
+            
+        default:
+            print("GPS: Default")
+        }
     }
 }
 
