@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 class CurrentWeatherView: UIView {
-    
-    let locationNameLabel: UILabel = {
+    // MARK: - Properties
+    private let locationNameLabel: UILabel = {
         let label = UILabel()
         label.text = "서울특별시"
         label.numberOfLines = 0
@@ -20,14 +20,14 @@ class CurrentWeatherView: UIView {
         return label
     }()
     
-    let weatherImageView: UIImageView = {
+    private let weatherImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "plus")
+        imageView.image = UIImage(systemName: "cloud.sun")
         
         return imageView
     }()
     
-    let currentTempLabel: UILabel = {
+    private let currentTempLabel: UILabel = {
         let label = UILabel()
         label.text = "23C"
         //label.numberOfLines = 0
@@ -37,7 +37,7 @@ class CurrentWeatherView: UIView {
         return label
     }()
     
-    let conditionLabel: UILabel = {
+    private let conditionLabel: UILabel = {
         let label = UILabel()
         label.text = "맑음"
         //label.numberOfLines = 0
@@ -47,7 +47,7 @@ class CurrentWeatherView: UIView {
         return label
     }()
     
-    let lowHighTempLabel: UILabel = {
+    private let lowHighTempLabel: UILabel = {
         let label = UILabel()
         label.text = "-1도 / " + "10도"
         //label.numberOfLines = 0
@@ -57,7 +57,7 @@ class CurrentWeatherView: UIView {
         return label
     }()
     
-    let humidityLabel: UILabel = {
+    private let humidityLabel: UILabel = {
         let label = UILabel()
         label.text = "축축"
         //label.numberOfLines = 0
@@ -67,7 +67,7 @@ class CurrentWeatherView: UIView {
         return label
     }()
     
-    let windSpeedLabel: UILabel = {
+    private let windSpeedLabel: UILabel = {
         let label = UILabel()
         label.text = "풍속"
         //label.numberOfLines = 0
@@ -77,7 +77,7 @@ class CurrentWeatherView: UIView {
         return label
     }()
     
-    let uvIndexLabel: UILabel = {
+    private let uvIndexLabel: UILabel = {
         let label = UILabel()
         label.text = "자외선"
         //label.numberOfLines = 0
@@ -87,7 +87,7 @@ class CurrentWeatherView: UIView {
         return label
     }()
     
-    let upperStackView: UIStackView = {
+    private let upperStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .fill
@@ -97,7 +97,7 @@ class CurrentWeatherView: UIView {
         return stackView
     }()
     
-    let middleStackView: UIStackView = {
+    private let middleStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .fill
@@ -107,7 +107,7 @@ class CurrentWeatherView: UIView {
         return stackView
     }()
     
-    let lowerStackView: UIStackView = {
+    private let lowerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .fill
@@ -117,7 +117,7 @@ class CurrentWeatherView: UIView {
         return stackView
     }()
     
-    let rootStackView: UIStackView = {
+    private let rootStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -126,7 +126,7 @@ class CurrentWeatherView: UIView {
         
         return stackView
     }()
-    
+    // MARK: - Initializer
     override init(frame: CGRect) {
         //print(#function)
         super.init(frame: frame)
@@ -138,7 +138,7 @@ class CurrentWeatherView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK: - Set up Views, Constraints
     // 오토레이아웃 정하는 정확한 시점
     override func updateConstraints() {
         setConstraints()
