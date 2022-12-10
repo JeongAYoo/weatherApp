@@ -14,6 +14,7 @@ class DailyTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "sun.max")
         imageView.contentMode = .scaleAspectFit
+        //imageView.backgroundColor = .white
         
         return imageView
     }()
@@ -23,6 +24,7 @@ class DailyTableViewCell: UITableViewCell {
         label.text = "월요일"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 18)
+        //label.backgroundColor = .yellow
         
         return label
     }()
@@ -32,6 +34,7 @@ class DailyTableViewCell: UITableViewCell {
         label.text = "-1도" + " / " + "10도"
         label.textAlignment = .right
         label.font = .systemFont(ofSize: 18)
+        //label.backgroundColor = .orange
         
         return label
     }()
@@ -41,7 +44,7 @@ class DailyTableViewCell: UITableViewCell {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .fillProportionally
-        stackView.spacing = 10
+        stackView.spacing = 20
         
         return stackView
     }()
@@ -68,19 +71,24 @@ class DailyTableViewCell: UITableViewCell {
         super.updateConstraints()
     }
     
-    func setUpView() {
-        //self.backgroundColor = .yellow
+    override func layoutSubviews() {
+        // 테이블 뷰 셀 사이의 간격
+        super.layoutSubviews()
 
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowRadius = 5
-        self.layer.shadowOffset = CGSize(width: 10, height: 20)
-        contentView.backgroundColor = .green
-        contentView.layer.cornerRadius = 10
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0))
+    }
+    
+    func setUpView() {
+        //self.layer.shadowColor = UIColor.black.cgColor
+        //self.layer.shadowOpacity = 0.5
+        //self.layer.shadowRadius = 5
+        //self.layer.shadowOffset = CGSize(width: 0, height: 5)
+        self.backgroundColor = .clear
+        contentView.layer.backgroundColor = UIColor.white.cgColor
+        contentView.layer.cornerRadius = 5
         contentView.layer.masksToBounds = false
         contentView.layer.borderWidth = 1
         contentView.layer.borderColor = UIColor.lightGray.cgColor
-        //contentView.layer.shadowOffset = CGSize(width: 10, height: 20)
         
         self.addSubview(stackView)
         
@@ -91,25 +99,30 @@ class DailyTableViewCell: UITableViewCell {
     
     func setConstraints() {
         weatherImageView.snp.makeConstraints { make in
-            make.width.equalTo(10)
+            make.width.equalToSuperview().multipliedBy(0.1)
             make.centerY.equalToSuperview()
+            //make.leading.equalToSuperview().offset(20)
         }
         
         dayLabel.snp.makeConstraints { make in
-            make.width.equalTo(20)
+            make.width.equalToSuperview().multipliedBy(0.2)
             make.centerY.equalToSuperview()
         }
         
         lowHighTempLabel.snp.makeConstraints { make in
-            make.width.equalTo(30)
+            make.width.equalToSuperview().multipliedBy(0.5)
             make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-20)
+            //make.right.equalToSuperview().offset(-20)
         }
         
         stackView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.height.equalTo(70)
+            //make.width.equalTo(contentView)
+            make.height.equalTo(60)
+            make.edges.equalTo(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
         }
     }
     

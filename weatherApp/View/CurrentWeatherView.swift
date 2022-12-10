@@ -23,6 +23,7 @@ class CurrentWeatherView: UIView {
     private let weatherImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "cloud.sun")
+        imageView.contentMode = .scaleAspectFit
         
         return imageView
     }()
@@ -32,7 +33,7 @@ class CurrentWeatherView: UIView {
         label.text = "23C"
         //label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 22)
+        label.font = .systemFont(ofSize: 28)
         
         return label
     }()
