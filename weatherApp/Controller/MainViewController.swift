@@ -23,7 +23,6 @@ final class MainViewController: UIViewController {
         view.isScrollEnabled = true
         view.showsHorizontalScrollIndicator = false
         view.showsVerticalScrollIndicator = false
-    //    view.scrollIndicatorInsets = UIEdgeInsets(top: -2, left: 0, bottom: 0, right: 4)
         view.contentInset = .zero
         view.backgroundColor = .clear
         view.clipsToBounds = true
@@ -63,14 +62,14 @@ final class MainViewController: UIViewController {
         setConstraints()
         
         // 테스트
-//        print(latitude, longitude)  // 일단은 이전 뷰컨에서 전달받음
-//
-////        let shared = WeatherService.init()
-////        let service = WeatherService.shared
-////        var location = CLLocation(latitude: latitude!, longitude: longitude!)
-//        Task {
-//            try await weatherKitManager.getWeather()
-//        }
+        print(latitude!, longitude!)  // 일단은 이전 뷰컨에서 전달받음
+        weatherKitManager.currentLocation = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
+
+
+        //var location = CLLocation(latitude: latitude!, longitude: longitude!)
+        Task {
+            try await weatherKitManager.getWeather()
+        }
         
     }
     
@@ -98,7 +97,7 @@ final class MainViewController: UIViewController {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(currentWeatherView.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(10)
-            //make.height.equalTo(100)
+            make.height.equalTo(UIScreen.main.bounds.width / 5 * 1.5)
         }
 
         tableView.snp.makeConstraints { make in
@@ -108,8 +107,6 @@ final class MainViewController: UIViewController {
         }
 
     }
-    
-
 }
 
 // MARK: - UITableView DataSource
@@ -151,7 +148,7 @@ extension MainViewController: UICollectionViewDataSource {
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         //return CGSize(width: 50, height: 100)
-        let width = UIScreen.main.bounds.width / 4
+        let width = UIScreen.main.bounds.width / 5
         return CGSize(width: width, height: width * 1.5)
     }
     

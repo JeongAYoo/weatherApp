@@ -12,6 +12,7 @@ struct CurrentWeather {
     
     let temperature: Double
     let condition: String
+    let humidity: Double
     let symbolName: String
 
 }
@@ -19,7 +20,7 @@ struct CurrentWeather {
 public class WeatherKitManager: ObservableObject {
     
     let service = WeatherService()
-    let currentLocation = CLLocation(latitude: 37.7749, longitude: 122.4194)
+    var currentLocation = CLLocation(latitude: 37.7749, longitude: 122.4194)
     var currentWeather: CurrentWeather?
     
     func getWeather() async {
@@ -27,13 +28,18 @@ public class WeatherKitManager: ObservableObject {
         do {
             let weather = try await service.weather(for: currentLocation)
             
+            print("⭐️현재 위치: \(currentLocation)")
+            
             self.currentWeather = CurrentWeather(
                 temperature: weather.currentWeather.temperature.value,
                 condition: weather.currentWeather.condition.rawValue,
+                humidity: weather.currentWeather.humidity,
                 symbolName: weather.currentWeather.symbolName
             )
             
-            print(self.currentWeather!)
+            //테스트
+            print("\n\n\n\n\n\n\n")
+            print(weather.currentWeather.self)
             
         } catch {
             assertionFailure(error.localizedDescription)
