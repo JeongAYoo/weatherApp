@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class DailyTableViewCell: UITableViewCell {
+final class DailyTableViewCell: UITableViewCell {
     // MARK: - Properties
     private let weatherImageView: UIImageView = {
         let imageView = UIImageView()
@@ -52,7 +52,7 @@ class DailyTableViewCell: UITableViewCell {
     // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
-        setUpView()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -65,7 +65,7 @@ class DailyTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    // MARK: - Set up Views, Constraints
+    // MARK: - AutoLayout
     override func updateConstraints() {
         setConstraints()
         super.updateConstraints()
@@ -78,7 +78,7 @@ class DailyTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0))
     }
     
-    func setUpView() {
+    func setupView() {
         //self.layer.shadowColor = UIColor.black.cgColor
         //self.layer.shadowOpacity = 0.5
         //self.layer.shadowRadius = 5

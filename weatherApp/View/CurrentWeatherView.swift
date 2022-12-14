@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class CurrentWeatherView: UIView {
+final class CurrentWeatherView: UIView {
     // MARK: - Properties
     private let locationNameLabel: UILabel = {
         let label = UILabel()
@@ -132,21 +132,21 @@ class CurrentWeatherView: UIView {
         //print(#function)
         super.init(frame: frame)
 
-        setUpView()
+        setupView()
         setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK: - Set up Views, Constraints
+    // MARK: - AutoLayout
     // 오토레이아웃 정하는 정확한 시점
     override func updateConstraints() {
         setConstraints()
         super.updateConstraints()
     }
     
-    func setUpView() {
+    func setupView() {
         self.backgroundColor = .white
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true

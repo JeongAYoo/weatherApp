@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-class TutorialViewController: UIViewController {
-    
+final class TutorialViewController: UIViewController {
+    // MARK: - Properties
     var images = ["mainMockUpCut", "searchMockUpCut"]
     var titleText = ["위치 기반 날씨 정보", "지역 검색과 추가하기"]
     var detailText = ["현재 위치한 곳의 날씨를 자동으로 표시합니다.\n위치 권한 허용이 필요합니다.", "지역을 검색하고, 나만의 리스트에 추가해 언제든 편리하게 날씨 정보를 확인하세요."]
@@ -19,11 +19,11 @@ class TutorialViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!
     @IBOutlet weak var imgView: UIImageView!
-    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpView()
+        setupView()
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(TutorialViewController.respondToSwipeGesture(_:)))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
@@ -33,8 +33,8 @@ class TutorialViewController: UIViewController {
         swipeRight.direction = UISwipeGestureRecognizer.Direction.right
         self.view.addGestureRecognizer(swipeRight)
     }
-    
-    func setUpView() {
+    // MARK: - AutoLayout
+    func setupView() {
         pageControl.currentPage = 0
         pageControl.numberOfPages = 2
         pageControl.pageIndicatorTintColor = .lightGray

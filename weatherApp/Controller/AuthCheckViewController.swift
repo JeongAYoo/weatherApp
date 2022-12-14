@@ -8,11 +8,10 @@
 import UIKit
 import CoreLocation
 
-// 코드로만 짜기, 주석 꼭 달기
-class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
-    
+final class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
+    // MARK: - Properties
     // 인증 허용 질문 레이블
-    let askAuthLabel: UILabel = {
+    private let askAuthLabel: UILabel = {
         let label = UILabel()
         label.text = "현재 위치를 기반으로\n날씨 정보를 확인하시겠어요?"
         label.numberOfLines = 0
@@ -23,7 +22,7 @@ class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
     }()
     
     // 허용 버튼
-    let yesButton: UIButton = {
+    private let yesButton: UIButton = {
         let button = UIButton()
         button.setTitle("네, 현재 위치로 확인할게요.", for: .normal)
         button.tintColor = .white
@@ -35,7 +34,7 @@ class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
     }()
     
     // 불허용 버튼
-    let noButton: UIButton = {
+    private let noButton: UIButton = {
         let button = UIButton()
         button.setTitle("아니요, 지역을 지정할게요.", for: .normal)
         button.tintColor = .black
@@ -47,7 +46,7 @@ class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
     }()
     
     // 버튼 2개 담을 스택뷰
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -60,13 +59,13 @@ class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager: CLLocationManager!
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
-    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUpView()
+        setupView()
     }
-    
-    func setUpView() {
+    // MARK: - AutoLayout
+    func setupView() {
         
         view.backgroundColor = .white
         
