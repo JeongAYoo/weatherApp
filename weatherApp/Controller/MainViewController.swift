@@ -43,6 +43,8 @@ final class MainViewController: UIViewController {
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
     
+    var hourlyWeatherArray: [HourlyWeather]?
+    var dailyWeatherArray: [DailyWeather]?
     var weatherKitManager = WeatherKitManager()
     
     // MARK: - View Life Cycle
@@ -69,8 +71,13 @@ final class MainViewController: UIViewController {
         //var location = CLLocation(latitude: latitude!, longitude: longitude!)
         Task {
             try await weatherKitManager.fetchWeather()
-            await currentWeatherView.setData(weather: weatherKitManager.getCurrentWeather()!)
-            
+            currentWeatherView.setData(weather: weatherKitManager.getCurrentWeather()!)
+            hourlyWeatherArray = weatherKitManager.getHourlyWeather()!
+            dailyWeatherArray = weatherKitManager.getDailyWeather()!
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.tableView.reloadData()
+            }
         }
 
         
@@ -117,13 +124,14 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print(#function)
-        return 7
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DailyWeatherCell", for: indexPath) as! DailyTableViewCell
-
-        print(#function)
+        
+        guard let data = dailyWeatherArray?[indexPath.row] else { return cell }
+        cell.setData(weather: data)
         return cell
     }
     
@@ -137,11 +145,13 @@ extension MainViewController: UITableViewDelegate {
 // MARK: - UICollectionView DataSource
 extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return 12
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HourlyWeatherCell", for: indexPath) as! HourlyCollectionViewCell
+        guard let data = hourlyWeatherArray?[indexPath.row] else { return cell }
+        cell.setData(weather: data)
         return cell
     }
 

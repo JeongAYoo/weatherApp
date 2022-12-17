@@ -37,16 +37,18 @@ struct CurrentWeather: Codable {
     //let apparentTemperature, pressure: ApparentTemperature
 }
 // MARK: - HourlyWeather
-//struct HourlyWeather {
-//    let symbolName: String
-//    let temperature: Double
-//    let date: Date  // 시간만 뽑아내서 수정
-//}
-//struct DailyWeather {
-//    let symbolName: String
-//    let highTemperture: Double
-//    let lowTemperature: Double
-//}
+struct HourlyWeather {
+    var symbolName: String
+    var temperature: Double
+    var date: String  // 시간만 뽑아내서 수정
+}
+// MARK: - DailyWeather
+struct DailyWeather {
+    let symbolName: String
+    let date: String
+    let highTemperture: Double
+    let lowTemperature: Double
+}
 // MARK: - ApparentTemperature
 struct ApparentTemperature: Codable {
     let value: Double

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import WeatherKit
 
 final class HourlyCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
@@ -32,7 +33,8 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
         label.text = "23C"
         label.textAlignment = .center
         label.textColor = .darkGray
-        label.font = .systemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 17)
+        label.adjustsFontSizeToFitWidth = true
         
         return label
     }()
@@ -73,7 +75,12 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
         stackView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
-
+    }
+    
+    func setData(weather: HourlyWeather) {
+        hourLabel.text = weather.date
+        weatherImageView.image = UIImage(systemName: weather.symbolName)
+        temperatureLabel.text = String(Int(round(weather.temperature))) + "°C"
     }
 }
 

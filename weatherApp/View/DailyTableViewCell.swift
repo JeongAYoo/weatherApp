@@ -112,18 +112,19 @@ final class DailyTableViewCell: UITableViewCell {
         lowHighTempLabel.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.5)
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-20)
-            //make.right.equalToSuperview().offset(-20)
         }
         
         stackView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
-            //make.width.equalTo(contentView)
-            make.height.equalTo(60)
+            make.top.leading.trailing.bottom.equalToSuperview()
+            //make.height.equalTo(60)
             make.edges.equalTo(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
         }
+    }
+    
+    func setData(weather: DailyWeather) {
+        weatherImageView.image = UIImage(systemName: weather.symbolName)
+        dayLabel.text = weather.date
+        lowHighTempLabel.text = String(weather.lowTemperature) + " / " + String(weather.highTemperture)
     }
     
 }
