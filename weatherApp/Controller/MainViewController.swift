@@ -13,7 +13,7 @@ import WeatherKit
 final class MainViewController: UIViewController {
     // MARK: - Properties
     private let currentWeatherView: CurrentWeatherView = {
-        let view = CurrentWeatherView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 20, height: 240))
+        let view = CurrentWeatherView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 20, height: 250))
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -68,8 +68,11 @@ final class MainViewController: UIViewController {
 
         //var location = CLLocation(latitude: latitude!, longitude: longitude!)
         Task {
-            try await weatherKitManager.getWeather()
+            try await weatherKitManager.fetchWeather()
+            await currentWeatherView.setData(weather: weatherKitManager.getCurrentWeather()!)
+            
         }
+
         
     }
     
@@ -91,7 +94,7 @@ final class MainViewController: UIViewController {
         
         currentWeatherView.snp.makeConstraints { make in
             make.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
-            make.height.equalTo(250)
+            //make.height.equalTo(250)
         }
         
         collectionView.snp.makeConstraints { make in

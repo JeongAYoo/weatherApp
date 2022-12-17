@@ -24,6 +24,7 @@ final class TutorialViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
+        setConstraints()
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(TutorialViewController.respondToSwipeGesture(_:)))
         swipeLeft.direction = UISwipeGestureRecognizer.Direction.left
@@ -39,56 +40,59 @@ final class TutorialViewController: UIViewController {
         pageControl.numberOfPages = 2
         pageControl.pageIndicatorTintColor = .lightGray
         pageControl.currentPageIndicatorTintColor = .black
-        
-        //left, right -> leading, trailing 으로 추후 수정하기
-        doneButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(70)
-            make.right.equalToSuperview().offset(-20)
-        }
+
         doneButton.setTitle("Skip", for: .normal)
         
-        imgView.snp.makeConstraints { make in
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
-            make.bottom.equalTo(pageControl.snp.top).offset(-20)
-            make.height.equalTo(350)
-        }
         imgView.image = UIImage(named: "mainMockUpCut")
         
-        titleLabel.snp.makeConstraints { make in
-            make.left.equalTo(10)
-            make.right.equalTo(-10)
-            make.top.equalTo(doneButton.snp.bottom).offset(40)
-            
-        }
         titleLabel.text = titleText[0]
         titleLabel.sizeToFit()
         titleLabel.textAlignment = .center
         titleLabel.font = .systemFont(ofSize: 22, weight: .bold)
         
-        detailLabel.snp.makeConstraints { make in
-            make.left.equalTo(20)
-            make.right.equalTo(-20)
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
-            //make.height.equalTo(60)
-        }
-        
         detailLabel.text = detailText[0]
         detailLabel.sizeToFit()
         detailLabel.textAlignment = .center
         detailLabel.numberOfLines = 0
-        
-        pageControl.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-50)
-            make.centerX.equalToSuperview()
+    }
+    
+    func setConstraints() {
+        //left, right -> leading, trailing 으로 추후 수정하기
+        doneButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(70)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
+        imgView.snp.makeConstraints { make in
+            make.leading.equalTo(10)
+            make.trailing.equalTo(-10)
+            make.bottom.equalTo(pageControl.snp.top).offset(-20)
+            make.height.equalTo(350)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.leading.equalTo(10)
+            make.trailing.equalTo(-10)
+            make.top.equalTo(doneButton.snp.bottom).offset(40)
+        }
+        
+        detailLabel.snp.makeConstraints { make in
+            make.leading.equalTo(20)
+            make.trailing.equalTo(-20)
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            //make.height.equalTo(60)
+        }
+        
+        pageControl.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.centerX.equalToSuperview()
+        }
     }
     
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //            pageControl.currentPage = Int(floor(scrollView.contentOffset.x / UIScreen.main.bounds.width))
 //    }
-    
+    // MARK: - IBAction
     @IBAction func pageChange(_ sender: UIPageControl) {
         imgView.image = UIImage(named: images[pageControl.currentPage])
     }

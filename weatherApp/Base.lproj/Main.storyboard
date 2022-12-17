@@ -110,8 +110,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="p1N-04-IyM">
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="p1N-04-IyM">
                                 <rect key="frame" x="137" y="784" width="116" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="pageChange:" destination="mFh-aU-xY7" eventType="valueChanged" id="4nQ-Tp-RX5"/>
                                 </connections>
@@ -146,10 +147,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZYk-fO-l6P"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="p1N-04-IyM" firstAttribute="centerX" secondItem="TOy-HE-2Kv" secondAttribute="centerX" id="JC4-Ua-DVQ"/>
-                            <constraint firstItem="p1N-04-IyM" firstAttribute="bottom" secondItem="ZYk-fO-l6P" secondAttribute="bottom" id="XYF-b4-SM8"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="detailLabel" destination="nf4-T2-1kz" id="Ag1-4I-lut"/>

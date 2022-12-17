@@ -8,42 +8,65 @@
 import CoreLocation
 import WeatherKit
 
-struct CurrentWeather {
-    
-    let temperature: Double
-    let condition: String
-    let humidity: Double
-    let symbolName: String
-
-}
-
 public class WeatherKitManager: ObservableObject {
     
     let service = WeatherService()
-    var currentLocation = CLLocation(latitude: 37.7749, longitude: 122.4194)
-    var currentWeather: CurrentWeather?
+    //서울로 테스트
+    var currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
     
-    func getWeather() async {
+    var currentWeather: CurrentWeather?
+    var hourlyWeahter: Forecast<HourWeather>?
+    var dailyWeather: Forecast<DayWeather>?
+    
+    func fetchWeather() async {
+        
+        currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
         
         do {
-            let weather = try await service.weather(for: currentLocation)
+            let (current, hourly, daily) = try await service.weather(for: currentLocation, including: .current, .hourly, .daily)
             
             print("⭐️현재 위치: \(currentLocation)")
             
             self.currentWeather = CurrentWeather(
-                temperature: weather.currentWeather.temperature.value,
-                condition: weather.currentWeather.condition.rawValue,
-                humidity: weather.currentWeather.humidity,
-                symbolName: weather.currentWeather.symbolName
+                //location: weather.currentWeather.metadata.location,
+                symbolName: current.symbolName,
+                temperature: current.temperature.value,
+                condition: current.condition.rawValue,
+                humidity: current.humidity,
+                windSpeed: current.wind.speed.value,
+                uvIndex: current.uvIndex.value,
+                date: current.date.formatted()
             )
+            
+            self.hourlyWeahter = hourly
+            self.dailyWeather = daily
+            
             
             //테스트
             print("\n\n\n\n\n\n\n")
-            print(weather.currentWeather.self)
+            print(hourly[0].date)
+            print(hourly[9].date)
+            //print(daily[0])
+            print(hourly[0].date.formatted(.dateTime.hour()))
+            print(hourly[9].date.formatted(.dateTime.hour()))
+
+            //print(self.currentWeather!)
             
         } catch {
             assertionFailure(error.localizedDescription)
         }
+    }
+    
+    func getCurrentWeather() -> CurrentWeather? {
+        return currentWeather
+    }
+    
+    func getHourlyWeather() -> Forecast<HourWeather>? {
+        return hourlyWeahter
+    }
+    
+    func getDailyWeather() -> Forecast<DayWeather>? {
+        return dailyWeather
     }
 
 }

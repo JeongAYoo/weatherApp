@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 final class CurrentWeatherView: UIView {
-    // MARK: - Properties
+    // MARK: - Properties    
     private let locationNameLabel: UILabel = {
         let label = UILabel()
         label.text = "서울특별시"
@@ -61,7 +61,7 @@ final class CurrentWeatherView: UIView {
     private let humidityLabel: UILabel = {
         let label = UILabel()
         label.text = "축축"
-        //label.numberOfLines = 0
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
         
@@ -71,7 +71,7 @@ final class CurrentWeatherView: UIView {
     private let windSpeedLabel: UILabel = {
         let label = UILabel()
         label.text = "풍속"
-        //label.numberOfLines = 0
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
         
@@ -81,9 +81,20 @@ final class CurrentWeatherView: UIView {
     private let uvIndexLabel: UILabel = {
         let label = UILabel()
         label.text = "자외선"
-        //label.numberOfLines = 0
+        label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
+        
+        return label
+    }()
+    
+    private let updateTimeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "업데이트 시각: "
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 10)
+        label.textColor = .darkGray
         
         return label
     }()
@@ -151,9 +162,13 @@ final class CurrentWeatherView: UIView {
         self.layer.cornerRadius = 5.0
         self.clipsToBounds = true
         
+        [humidityLabel, windSpeedLabel, uvIndexLabel].forEach { UILabel in
+            UILabel.setLineSpacing(spacing: 5)
+        }
+        
         self.addSubview(rootStackView)
         
-        [locationNameLabel, upperStackView, middleStackView, lowerStackView].forEach {
+        [locationNameLabel, upperStackView, middleStackView, lowerStackView, updateTimeLabel].forEach {
             rootStackView.addArrangedSubview($0)
         }
         
@@ -172,9 +187,7 @@ final class CurrentWeatherView: UIView {
     
     func setConstraints() {
         rootStackView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.leading.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.top.leading.trailing.bottom.equalToSuperview()
         }
         
         upperStackView.snp.makeConstraints { make in
@@ -182,5 +195,14 @@ final class CurrentWeatherView: UIView {
         }
     }
     
+    func setData(weather: CurrentWeather) {
+        weatherImageView.image = UIImage(systemName: weather.symbolName)
+        currentTempLabel.text = String(weather.temperature) + "°C"
+        conditionLabel.text = weather.condition
+        humidityLabel.text = "습도\n" + String(weather.humidity)
+        windSpeedLabel.text = "풍속\n" + String(weather.windSpeed)
+        uvIndexLabel.text = "자외선\n" + String(weather.uvIndex)
+        updateTimeLabel.text! += weather.date
+    }
 }
 

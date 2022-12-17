@@ -22,8 +22,8 @@ final class MainView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        self.layer.cornerRadius = 5.0
-        self.clipsToBounds = true
+//        self.layer.cornerRadius = 5.0
+//        self.clipsToBounds = true
         setupView()
         //updateConstraints()
     }
@@ -36,17 +36,15 @@ final class MainView: UIView {
         self.addSubview(addButton)
     }
     
-    // 오토레이아웃 업데이트
-    override func updateConstraints() {
-        setConstraints()
-        super.updateConstraints()
-    }
+//    override func updateConstraints() {
+//        setConstraints()
+//        super.updateConstraints()
+//    }
     
     func setConstraints() {
-        // 레이아웃
         addButton.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(20)
-            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-20)
+            make.top.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.width.equalTo(35)
             make.height.equalTo(35)
         }

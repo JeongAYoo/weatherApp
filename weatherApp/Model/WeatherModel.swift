@@ -11,26 +11,42 @@
 //   let currentWeather = try? newJSONDecoder().decode(CurrentWeather.self, from: jsonData)
 
 import Foundation
+import WeatherKit
+import CoreLocation
 
 // MARK: - CurrentWeather
-struct CurrentWeather2: Codable {
-    let rainfallAmount: FallAmount
+struct CurrentWeather: Codable {
+    //let location: CLLocation
+    let symbolName: String
+    let temperature: Double    //.value로 접근
+    //let lowTemperature: Double
+    //let highTemperature: Double
     let condition: String
     let humidity: Double
-    let precipitationIntensity, temperature: ApparentTemperature
-    let isDaylight: Bool
-    let cloudCover: Double
-    let symbolName, pressureTrend: String
-    let dewPoint: ApparentTemperature
-    let uvIndex: UvIndex
-    let snowfallAmount: FallAmount
-    let date: Int
-    let visibility: ApparentTemperature
-    let wind: Wind
-    let metadata: Metadata
-    let apparentTemperature, pressure: ApparentTemperature
+    let windSpeed: Double
+    let uvIndex: Int
+    //let precipitationIntensity: ApparentTemperature
+    //let isDaylight: Bool
+    //let cloudCover: Double
+    //let dewPoint: ApparentTemperature
+    //let rainfallAmount: FallAmount
+    //let snowfallAmount: FallAmount
+    let date: String
+    //let visibility: ApparentTemperature
+    //let metadata: Metadata
+    //let apparentTemperature, pressure: ApparentTemperature
 }
-
+// MARK: - HourlyWeather
+//struct HourlyWeather {
+//    let symbolName: String
+//    let temperature: Double
+//    let date: Date  // 시간만 뽑아내서 수정
+//}
+//struct DailyWeather {
+//    let symbolName: String
+//    let highTemperture: Double
+//    let lowTemperature: Double
+//}
 // MARK: - ApparentTemperature
 struct ApparentTemperature: Codable {
     let value: Double
@@ -61,14 +77,14 @@ struct FallAmount: Codable {
 }
 
 // MARK: - UvIndex
-struct UvIndex: Codable {
-    let value: Int
-    let category: String
-}
+//struct UvIndex: Codable {
+//    let value: Int
+//    let category: String
+//}
 
 // MARK: - Wind
-struct Wind: Codable {
-    let gust, speed: ApparentTemperature
-    let compassDirection: String
-    let direction: ApparentTemperature
-}
+//struct Wind: Codable {
+//    let gust, speed: ApparentTemperature
+//    let compassDirection: String
+//    let direction: ApparentTemperature
+//}
