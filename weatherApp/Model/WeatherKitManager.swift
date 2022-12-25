@@ -31,6 +31,8 @@ public class WeatherKitManager: ObservableObject {
                 //location: weather.currentWeather.metadata.location,
                 symbolName: current.symbolName,
                 temperature: current.temperature.value,
+                lowTemperature: daily[0].lowTemperature.value,
+                highTemperature: daily[0].highTemperature.value,
                 condition: current.condition.description,
                 humidity: current.humidity,
                 windSpeed: current.wind.speed.value,

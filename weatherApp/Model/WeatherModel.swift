@@ -19,8 +19,8 @@ struct CurrentWeather: Codable {
     //let location: CLLocation
     let symbolName: String
     let temperature: Double    //.value로 접근
-    //let lowTemperature: Double
-    //let highTemperature: Double
+    let lowTemperature: Double
+    let highTemperature: Double
     let condition: String
     let humidity: Double
     let windSpeed: Double

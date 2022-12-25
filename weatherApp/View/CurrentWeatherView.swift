@@ -199,6 +199,8 @@ final class CurrentWeatherView: UIView {
         weatherImageView.image = UIImage(systemName: weather.symbolName)
         currentTempLabel.text = String(weather.temperature) + "°C"
         conditionLabel.text = weather.condition
+        lowHighTempLabel.text = String(Int(round(weather.lowTemperature))) + "°C / " +
+            String(Int(round(weather.highTemperature))) + "°C"
         humidityLabel.text = "습도\n" + String(weather.humidity)
         windSpeedLabel.text = "풍속\n" + String(weather.windSpeed)
         uvIndexLabel.text = "자외선\n" + String(weather.uvIndex)

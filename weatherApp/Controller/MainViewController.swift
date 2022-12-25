@@ -64,8 +64,9 @@ final class MainViewController: UIViewController {
         setConstraints()
         
         // 테스트
-        print(latitude!, longitude!)  // 일단은 이전 뷰컨에서 전달받음
-        weatherKitManager.currentLocation = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
+        //print(latitude!, longitude!)  // 일단은 이전 뷰컨에서 전달받음
+        //weatherKitManager.currentLocation = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
+        weatherKitManager.currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
 
 
         //var location = CLLocation(latitude: latitude!, longitude: longitude!)
@@ -83,17 +84,37 @@ final class MainViewController: UIViewController {
         
     }
     
-//    override func updateViewConstraints() {
-//        setConstraints()
-//    }
     // MARK: - AutoLayout
     func setupView() {
+        setNavigationBar()
+        
         view.backgroundColor = .lightGray
         tableView.backgroundColor = .clear
         collectionView.backgroundColor = .clear
         view.addSubview(currentWeatherView)
         view.addSubview(tableView)
         view.addSubview(collectionView)
+    }
+    
+    func setNavigationBar() {
+        // 내비게이션바 설정
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+
+        navigationItem.scrollEdgeAppearance = navigationBarAppearance
+        navigationItem.standardAppearance = navigationBarAppearance
+
+        navigationController?.setNeedsStatusBarAppearanceUpdate()
+                
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = .white
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(listButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+
+        title = "날씨"
     }
     
     func setConstraints() {
@@ -115,7 +136,14 @@ final class MainViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(10)
             make.bottom.equalToSuperview()
         }
-
+    }
+    // MARK: - Action
+    @objc func listButtonTapped() {
+        
+    }
+    @objc func addButtonTapped() {
+        let vc = SearchViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
