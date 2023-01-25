@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		075B5EDD29813FF9000ED108 /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075B5EDC29813FF9000ED108 /* SearchResultViewController.swift */; };
+		075B5EDF29814A00000ED108 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075B5EDE29814A00000ED108 /* SearchResultTableViewCell.swift */; };
 		0765B1F829224832009AC8A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B1F729224832009AC8A8 /* AppDelegate.swift */; };
 		0765B1FA29224832009AC8A8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B1F929224832009AC8A8 /* SceneDelegate.swift */; };
 		0765B1FC29224832009AC8A8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B1FB29224832009AC8A8 /* MainViewController.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		075B5EDC29813FF9000ED108 /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		075B5EDE29814A00000ED108 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		0765B1F429224832009AC8A8 /* weatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0765B1F729224832009AC8A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0765B1F929224832009AC8A8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +126,7 @@
 				07E71C672943ABB000D4C56C /* CurrentWeatherView.swift */,
 				07E71C6D2943DDF600D4C56C /* HourlyCollectionViewCell.swift */,
 				07E71C6B2943ABCF00D4C56C /* DailyTableViewCell.swift */,
+				075B5EDE29814A00000ED108 /* SearchResultTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 				0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */,
 				0765B1FB29224832009AC8A8 /* MainViewController.swift */,
 				0765B21429227312009AC8A8 /* SearchViewController.swift */,
+				075B5EDC29813FF9000ED108 /* SearchResultViewController.swift */,
 				0765B212292272E8009AC8A8 /* SettingViewController.swift */,
 			);
 			path = Controller;
@@ -231,6 +237,7 @@
 				0765B213292272E8009AC8A8 /* SettingViewController.swift in Sources */,
 				07B9275E293BE274009601F5 /* MainView.swift in Sources */,
 				0765B1FC29224832009AC8A8 /* MainViewController.swift in Sources */,
+				075B5EDF29814A00000ED108 /* SearchResultTableViewCell.swift in Sources */,
 				07E71C682943ABB000D4C56C /* CurrentWeatherView.swift in Sources */,
 				0799C59C2934C7C000E3FDC7 /* AuthCheckViewController.swift in Sources */,
 				0765B21529227312009AC8A8 /* SearchViewController.swift in Sources */,
@@ -242,6 +249,7 @@
 				0765B21A292B898C009AC8A8 /* TutorialViewController.swift in Sources */,
 				0765B1FA29224832009AC8A8 /* SceneDelegate.swift in Sources */,
 				07B9278D293E2529009601F5 /* WeatherKitManager.swift in Sources */,
+				075B5EDD29813FF9000ED108 /* SearchResultViewController.swift in Sources */,
 				07B04010294CB38000D5E3B6 /* UILabelSpacing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
