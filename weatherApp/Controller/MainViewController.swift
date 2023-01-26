@@ -42,6 +42,11 @@ final class MainViewController: UIViewController {
     
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
+    var testLocation = CLLocation(latitude: 37.5326, longitude: 127.0246) {
+        didSet {
+            setupData()
+        }
+    }
     
     var hourlyWeatherArray: [HourlyWeather]?
     var dailyWeatherArray: [DailyWeather]?
@@ -64,26 +69,35 @@ final class MainViewController: UIViewController {
         setupView()
         setConstraints()
         
-        
         // 테스트
         //print(latitude!, longitude!)  // 일단은 이전 뷰컨에서 전달받음
         //weatherKitManager.currentLocation = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
         //weatherKitManager.currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
         
 
-        var testLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
+        setupData()
+        
+    }
+    
+    func setupData() {
         Task {
-            try await weatherKitManager.fetchWeather(location: testLocation)
-            currentWeatherView.setData(weather: weatherKitManager.getCurrentWeather()!)
-            hourlyWeatherArray = weatherKitManager.getHourlyWeather()!
-            dailyWeatherArray = weatherKitManager.getDailyWeather()!
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.tableView.reloadData()
+            try await weatherKitManager.fetchWeather(location: testLocation) { current, hourly, daily in
+                //currentWeatherView.setData(weather: weatherKitManager.getCurrentWeather()!)
+                //hourlyWeatherArray = weatherKitManager.getHourlyWeather()!
+                //dailyWeatherArray = weatherKitManager.getDailyWeather()!
+                self.currentWeatherView.setData(weather: current!)
+                self.hourlyWeatherArray = hourly!
+                self.dailyWeatherArray = daily!
+                print(self.dailyWeatherArray!)
+                
+                DispatchQueue.main.async {
+                    //self.currentWeatherView.setNeedsLayout()
+                    //self.currentWeatherView.setData(weather: current!)
+                    self.collectionView.reloadData()
+                    self.tableView.reloadData()
+                }
             }
         }
-
-        
     }
     
     // MARK: - AutoLayout

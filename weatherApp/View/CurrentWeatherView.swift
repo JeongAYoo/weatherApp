@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreLocation
 
 final class CurrentWeatherView: UIView {
     // MARK: - Properties    
@@ -15,7 +16,7 @@ final class CurrentWeatherView: UIView {
         label.text = "서울특별시"
         label.numberOfLines = 0
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 18)
         
         return label
     }()
@@ -196,15 +197,46 @@ final class CurrentWeatherView: UIView {
     }
     
     func setData(weather: CurrentWeather) {
-        weatherImageView.image = UIImage(systemName: weather.symbolName)
-        currentTempLabel.text = String(weather.temperature) + "°C"
-        conditionLabel.text = weather.condition
-        lowHighTempLabel.text = String(Int(round(weather.lowTemperature))) + "°C / " +
-            String(Int(round(weather.highTemperature))) + "°C"
-        humidityLabel.text = "습도\n" + String(weather.humidity)
-        windSpeedLabel.text = "풍속\n" + String(weather.windSpeed)
-        uvIndexLabel.text = "자외선\n" + String(weather.uvIndex)
-        updateTimeLabel.text! += weather.date
+        DispatchQueue.main.async {
+            self.convertToAddress(location: weather.location)
+            self.weatherImageView.image = UIImage(systemName: weather.symbolName)
+            self.currentTempLabel.text = String(weather.temperature) + "°C"
+            self.conditionLabel.text = weather.condition
+            self.lowHighTempLabel.text = String(Int(round(weather.lowTemperature))) + "°C / " +
+                String(Int(round(weather.highTemperature))) + "°C"
+            self.humidityLabel.text = "습도\n" + String(weather.humidity)
+            self.windSpeedLabel.text = "풍속\n" + String(weather.windSpeed)
+            self.uvIndexLabel.text = "자외선\n" + String(weather.uvIndex)
+            self.updateTimeLabel.text! = weather.date
+        }
+    }
+    
+    func convertToAddress(location: CLLocation) {
+        let geocoder = CLGeocoder()
+        let local: Locale = Locale(identifier: "Ko-kr") //korea
+        
+        geocoder.reverseGeocodeLocation(location, preferredLocale: local) { (placemarks, error) in
+            // 1
+            if let error = error {
+                print(error)
+            }
+            
+            // 2
+            guard let placemark = placemarks?.first else { return }
+            print(placemark)
+            // Geary & Powell, Geary & Powell, 299 Geary St, San Francisco, CA 94102, United States @ <+37.78735352,-122.40822700> +/- 100.00m, region CLCircularRegion (identifier:'<+37.78735636,-122.40822737> radius 70.65', center:<+37.78735636,-122.40822737>, radius:70.65m)
+            
+            // 3
+            let streetName = placemark.thoroughfare ?? ""
+            guard let city = placemark.locality else { return }
+            //guard let state = placemark.administrativeArea else { return }
+            
+            // 4
+            //print("\(streetName) \n \(city)")
+            DispatchQueue.main.async {
+                self.locationNameLabel.text = "\(streetName), \(city)"
+            }
+        }
     }
 }
 

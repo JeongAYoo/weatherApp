@@ -15,8 +15,8 @@ import WeatherKit
 import CoreLocation
 
 // MARK: - CurrentWeather
-struct CurrentWeather: Codable {
-    //let location: CLLocation
+struct CurrentWeather {
+    let location: CLLocation
     let symbolName: String
     let temperature: Double    //.value로 접근
     let lowTemperature: Double

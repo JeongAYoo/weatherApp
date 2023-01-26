@@ -101,9 +101,14 @@ extension SearchResultViewController: UITableViewDelegate {
             let searchLatitude = placeMark.coordinate.latitude
             let searchLongtitude = placeMark.coordinate.longitude
             
-            print(placeMark.administrativeArea, placeMark.locality, placeMark.thoroughfare, searchLatitude, searchLongtitude)
-            //print(placeMark)
-
+            //print(placeMark.title)
+            
+            let vc = MainViewController()
+            vc.testLocation = CLLocation(latitude: searchLatitude, longitude: searchLongtitude)
+            //self.presentingViewController?.navigationController?.popViewController(animated: true)
+            //self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+            //vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
         }
     }
     
