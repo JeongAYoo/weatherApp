@@ -27,6 +27,7 @@ final class SearchResultViewController: UIViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupTableView()
         setupSearchCompleter()
     }
@@ -100,7 +101,8 @@ extension SearchResultViewController: UITableViewDelegate {
             let searchLatitude = placeMark.coordinate.latitude
             let searchLongtitude = placeMark.coordinate.longitude
             
-            print(placeMark.locality, searchLatitude, searchLongtitude)
+            print(placeMark.administrativeArea, placeMark.locality, placeMark.thoroughfare, searchLatitude, searchLongtitude)
+            //print(placeMark)
 
         }
     }

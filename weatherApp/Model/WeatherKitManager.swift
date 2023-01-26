@@ -10,7 +10,12 @@ import WeatherKit
 
 public class WeatherKitManager: ObservableObject {
     
+    static let shared = WeatherKitManager()
+
+    private init() {}
+    
     let service = WeatherService()
+
     //서울로 테스트
     var currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
     
@@ -18,12 +23,12 @@ public class WeatherKitManager: ObservableObject {
     var hourlyWeather: [HourlyWeather] = []
     var dailyWeather: [DailyWeather] = []
     
-    func fetchWeather() async {
+    func fetchWeather(location: CLLocation) async {
         
-        currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
+        //currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
         
         do {
-            let (current, hourly, daily) = try await service.weather(for: currentLocation, including: .current, .hourly, .daily)
+            let (current, hourly, daily) = try await service.weather(for: location, including: .current, .hourly, .daily)
             
             print("⭐️현재 위치: \(currentLocation)")
             // 현재 날씨 데이터 가져오기
@@ -63,8 +68,7 @@ public class WeatherKitManager: ObservableObject {
             
             //테스트
             print("\n\n\n\n\n\n\n")
-            print(hourlyWeather.count)
-            print(daily.count)
+            
 
         } catch {
             assertionFailure(error.localizedDescription)
@@ -81,6 +85,31 @@ public class WeatherKitManager: ObservableObject {
     
     func getDailyWeather() -> [DailyWeather]? {
         return dailyWeather
+    }
+    
+    func convertToAddress(location: CLLocation) -> String {
+        let geocoder = CLGeocoder()
+        
+        
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            // 1
+            if let error = error {
+                print(error)
+            }
+                    
+            // 2
+            guard let placemark = placemarks?.first else { return }
+            print(placemark)
+            // Geary & Powell, Geary & Powell, 299 Geary St, San Francisco, CA 94102, United States @ <+37.78735352,-122.40822700> +/- 100.00m, region CLCircularRegion (identifier:'<+37.78735636,-122.40822737> radius 70.65', center:<+37.78735636,-122.40822737>, radius:70.65m)
+                    
+            // 3
+            guard let streetName = placemark.thoroughfare else { return }
+            guard let city = placemark.locality else { return }
+            guard let state = placemark.administrativeArea else { return }
+                    
+            // 4
+            return "\(streetName) \(city), \(state)"
+        }
     }
 
 }

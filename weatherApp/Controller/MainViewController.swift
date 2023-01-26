@@ -45,7 +45,8 @@ final class MainViewController: UIViewController {
     
     var hourlyWeatherArray: [HourlyWeather]?
     var dailyWeatherArray: [DailyWeather]?
-    var weatherKitManager = WeatherKitManager()
+    var weatherKitManager = WeatherKitManager.shared
+    private var geocoder: CLGeocoder!
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -63,15 +64,16 @@ final class MainViewController: UIViewController {
         setupView()
         setConstraints()
         
+        
         // 테스트
         //print(latitude!, longitude!)  // 일단은 이전 뷰컨에서 전달받음
         //weatherKitManager.currentLocation = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
-        weatherKitManager.currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
+        //weatherKitManager.currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
+        
 
-
-        //var location = CLLocation(latitude: latitude!, longitude: longitude!)
+        var testLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
         Task {
-            try await weatherKitManager.fetchWeather()
+            try await weatherKitManager.fetchWeather(location: testLocation)
             currentWeatherView.setData(weather: weatherKitManager.getCurrentWeather()!)
             hourlyWeatherArray = weatherKitManager.getHourlyWeather()!
             dailyWeatherArray = weatherKitManager.getDailyWeather()!

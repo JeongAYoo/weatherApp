@@ -40,6 +40,8 @@ final class SearchViewController: UIViewController {
 
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.placeholder = "도시 또는 지역 검색"
     }
 }
 
@@ -48,6 +50,7 @@ extension SearchViewController: UISearchResultsUpdating {
     // 유저가 글자를 입력하는 순간마다 호출
     func updateSearchResults(for searchController: UISearchController) {
         // 글자를 치는 순간에 다른 화면 보여주기
+        //navigationController?.navigationBar.prefersLargeTitles = false
         let vc = searchController.searchResultsController as! SearchResultViewController
         vc.searchTerm = searchController.searchBar.text ?? ""
     }
