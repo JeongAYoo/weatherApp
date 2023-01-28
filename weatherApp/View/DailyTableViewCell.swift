@@ -44,7 +44,7 @@ final class DailyTableViewCell: UITableViewCell {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .fillProportionally
-        stackView.spacing = 20
+        //stackView.spacing = 20
         
         return stackView
     }()
@@ -99,25 +99,27 @@ final class DailyTableViewCell: UITableViewCell {
     
     func setConstraints() {
         weatherImageView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.1)
+            //make.width.equalToSuperview().multipliedBy(0.1)
+            //make.width.equalTo(10)
             make.centerY.equalToSuperview()
-            //make.leading.equalToSuperview().offset(20)
         }
         
         dayLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.2)
+            //make.width.equalToSuperview().multipliedBy(0.2)
+            //make.width.equalTo(20)
             make.centerY.equalToSuperview()
         }
         
         lowHighTempLabel.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.5)
+            //make.width.equalToSuperview().multipliedBy(0.5)
+            //make.width.equalTo(50)
             make.centerY.equalToSuperview()
         }
         
         stackView.snp.makeConstraints { make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+            make.top.leading.trailing.bottom.equalToSuperview().inset(20)
             //make.height.equalTo(60)
-            make.edges.equalTo(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
+            //make.edges.equalTo(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
         }
     }
     
