@@ -104,11 +104,13 @@ extension SearchResultViewController: UITableViewDelegate {
             //print(placeMark.title)
             
             let vc = MainViewController()
+            
+            let navVC = UINavigationController(rootViewController: vc)
+        
             vc.testLocation = CLLocation(latitude: searchLatitude, longitude: searchLongtitude)
-            //self.presentingViewController?.navigationController?.popViewController(animated: true)
-            //self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
-            //vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
+            vc.isSearched = true
+
+            self.present(navVC, animated: true, completion: nil)
         }
     }
     

@@ -52,6 +52,7 @@ final class MainViewController: UIViewController {
     var dailyWeatherArray: [DailyWeather]?
     var weatherKitManager = WeatherKitManager.shared
     private var geocoder: CLGeocoder!
+    var isSearched: Bool = false
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -74,9 +75,7 @@ final class MainViewController: UIViewController {
         //weatherKitManager.currentLocation = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
         //weatherKitManager.currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
         
-
         setupData()
-        
     }
     
     func setupData() {
@@ -102,8 +101,12 @@ final class MainViewController: UIViewController {
     
     // MARK: - AutoLayout
     func setupView() {
-        setNavigationBar()
-        
+        if !isSearched {
+            setNavigationBar()
+        } else {
+            setSearchResultNavigationBar()
+        }
+    
         view.backgroundColor = .lightGray
         tableView.backgroundColor = .clear
         collectionView.backgroundColor = .clear
@@ -133,6 +136,22 @@ final class MainViewController: UIViewController {
         title = "날씨"
     }
     
+    func setSearchResultNavigationBar() {
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
+        
+        navigationItem.standardAppearance = navigationBarAppearance
+        navigationController?.setNeedsStatusBarAppearanceUpdate()
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = .white
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(resultDismiss))
+        // TODO: - Add save button, actions for saving new location
+        
+        title = "검색 지역 날씨"
+
+    }
+    
     func setConstraints() {
         print(#function)
         
@@ -157,9 +176,14 @@ final class MainViewController: UIViewController {
     @objc func listButtonTapped() {
         
     }
+    
     @objc func addButtonTapped() {
         let vc = SearchViewController()
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func resultDismiss() {
+        self.dismiss(animated: true)
     }
 }
 

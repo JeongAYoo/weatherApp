@@ -13,7 +13,7 @@ final class CurrentWeatherView: UIView {
     // MARK: - Properties    
     private let locationNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "서울특별시"
+        label.text = ""
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 18)
@@ -31,7 +31,7 @@ final class CurrentWeatherView: UIView {
     
     private let currentTempLabel: UILabel = {
         let label = UILabel()
-        label.text = "23C"
+        label.text = ""
         //label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 28)
@@ -41,7 +41,7 @@ final class CurrentWeatherView: UIView {
     
     private let conditionLabel: UILabel = {
         let label = UILabel()
-        label.text = "맑음"
+        label.text = ""
         //label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
@@ -51,7 +51,7 @@ final class CurrentWeatherView: UIView {
     
     private let lowHighTempLabel: UILabel = {
         let label = UILabel()
-        label.text = "-1도 / " + "10도"
+        label.text = ""
         //label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
@@ -61,7 +61,7 @@ final class CurrentWeatherView: UIView {
     
     private let humidityLabel: UILabel = {
         let label = UILabel()
-        label.text = "축축"
+        label.text = "습도"
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
@@ -207,7 +207,7 @@ final class CurrentWeatherView: UIView {
             self.humidityLabel.text = "습도\n" + String(weather.humidity)
             self.windSpeedLabel.text = "풍속\n" + String(weather.windSpeed)
             self.uvIndexLabel.text = "자외선\n" + String(weather.uvIndex)
-            self.updateTimeLabel.text! = weather.date
+            self.updateTimeLabel.text! = "업데이트 시각: " + weather.date
         }
     }
     
