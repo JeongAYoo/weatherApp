@@ -147,6 +147,7 @@ final class MainViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(resultDismiss))
         // TODO: - Add save button, actions for saving new location
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(saveToMyList))
         
         title = "검색 지역 날씨"
 
@@ -184,6 +185,10 @@ final class MainViewController: UIViewController {
     
     @objc func resultDismiss() {
         self.dismiss(animated: true)
+    }
+    
+    @objc func saveToMyList() {
+        
     }
 }
 
