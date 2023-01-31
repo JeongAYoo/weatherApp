@@ -46,6 +46,7 @@ public class WeatherKitManager: ObservableObject {
                 uvIndex: current.uvIndex.value,
                 date: current.date.formatted()
             )
+            self.currentWeather?.convertToAddress(location: location)
             // 시간별 날씨 예측 데이터 가져오기
             // 현재 시간 + 12시간 이후까지
             let firstHourIndex = hourly.firstIndex { element in

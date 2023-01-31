@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import CoreLocation
 import WeatherKit
+import RealmSwift
 
 final class MainViewController: UIViewController {
     // MARK: - Properties
@@ -53,6 +54,7 @@ final class MainViewController: UIViewController {
     var weatherKitManager = WeatherKitManager.shared
     private var geocoder: CLGeocoder!
     var isSearched: Bool = false
+    let localRealm = try! Realm()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -147,7 +149,7 @@ final class MainViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(resultDismiss))
         // TODO: - Add save button, actions for saving new location
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(saveToMyList))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(saveButtonTapped))
         
         title = "검색 지역 날씨"
 
@@ -187,8 +189,10 @@ final class MainViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    @objc func saveToMyList() {
-        
+    @objc func saveButtonTapped() {
+        print("Realm is located at:", localRealm.configuration.fileURL!)
+
+        //let task = UserCity(cityName: <#T##String#>, latitude: <#T##Double#>, longitude: <#T##Double#>)
     }
 }
 

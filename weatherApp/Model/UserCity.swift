@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UserCity.swift
 //  weatherApp
 //
 //  Created by Jade Yoo on 2023/01/30.
@@ -15,4 +15,12 @@ class UserCity: Object {
     @Persisted var longitude: Double
 
     @Persisted(primaryKey: true) var _id: ObjectId
+    
+    convenience init(cityName: String, latitude: Double, longitude: Double) {
+        self.init()
+        
+        self.cityName = cityName
+        self.latitude = latitude
+        self.longitude = longitude
+    }
 }

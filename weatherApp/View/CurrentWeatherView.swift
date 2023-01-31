@@ -198,7 +198,7 @@ final class CurrentWeatherView: UIView {
     
     func setData(weather: CurrentWeather) {
         DispatchQueue.main.async {
-            self.convertToAddress(location: weather.location)
+            self.locationNameLabel.text = weather.locationString
             self.weatherImageView.image = UIImage(systemName: weather.symbolName)
             self.currentTempLabel.text = String(weather.temperature) + "°C"
             self.conditionLabel.text = weather.condition
@@ -211,32 +211,5 @@ final class CurrentWeatherView: UIView {
         }
     }
     
-    func convertToAddress(location: CLLocation) {
-        let geocoder = CLGeocoder()
-        let local: Locale = Locale(identifier: "Ko-kr") //korea
-        
-        geocoder.reverseGeocodeLocation(location, preferredLocale: local) { (placemarks, error) in
-            // 1
-            if let error = error {
-                print(error)
-            }
-            
-            // 2
-            guard let placemark = placemarks?.first else { return }
-            print(placemark)
-            // Geary & Powell, Geary & Powell, 299 Geary St, San Francisco, CA 94102, United States @ <+37.78735352,-122.40822700> +/- 100.00m, region CLCircularRegion (identifier:'<+37.78735636,-122.40822737> radius 70.65', center:<+37.78735636,-122.40822737>, radius:70.65m)
-            
-            // 3
-            let streetName = placemark.thoroughfare ?? ""
-            guard let city = placemark.locality else { return }
-            //guard let state = placemark.administrativeArea else { return }
-            
-            // 4
-            //print("\(streetName) \n \(city)")
-            DispatchQueue.main.async {
-                self.locationNameLabel.text = "\(streetName), \(city)"
-            }
-        }
-    }
 }
 
