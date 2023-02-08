@@ -27,7 +27,6 @@ public class WeatherKitManager: ObservableObject {
         
         hourlyWeather = []
         dailyWeather = []
-        //currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
         
         do {
             let (current, hourly, daily) = try await service.weather(for: location, including: .current, .hourly, .daily)
@@ -46,7 +45,12 @@ public class WeatherKitManager: ObservableObject {
                 uvIndex: current.uvIndex.value,
                 date: current.date.formatted()
             )
-            self.currentWeather?.convertToAddress(location: location)
+            
+//            self.currentWeather?.convertToAddress(location: location) { locationStr in
+//                self.currentWeather?.locationString = locationStr ?? "실패"
+//                print(locationStr)
+//            }
+            
             // 시간별 날씨 예측 데이터 가져오기
             // 현재 시간 + 12시간 이후까지
             let firstHourIndex = hourly.firstIndex { element in
@@ -76,18 +80,6 @@ public class WeatherKitManager: ObservableObject {
         } catch {
             assertionFailure(error.localizedDescription)
         }
-    }
-    
-    func getCurrentWeather() -> CurrentWeather? {
-        return currentWeather
-    }
-    
-    func getHourlyWeather() -> [HourlyWeather]? {
-        return hourlyWeather
-    }
-    
-    func getDailyWeather() -> [DailyWeather]? {
-        return dailyWeather
     }
     
 }

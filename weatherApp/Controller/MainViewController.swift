@@ -35,7 +35,6 @@ final class MainViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 1.0
-        //layout.itemSize = CGSize(width: 100, height: 100)
         return layout
       }()
     
@@ -46,6 +45,7 @@ final class MainViewController: UIViewController {
     var testLocation = CLLocation(latitude: 37.5326, longitude: 127.0246) {
         didSet {
             setupData()
+            setUserCity()
         }
     }
     
@@ -72,28 +72,19 @@ final class MainViewController: UIViewController {
         setupView()
         setConstraints()
         
-        // 테스트
-        //print(latitude!, longitude!)  // 일단은 이전 뷰컨에서 전달받음
-        //weatherKitManager.currentLocation = CLLocation(latitude: self.latitude!, longitude: self.longitude!)
-        //weatherKitManager.currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246)
-        
         setupData()
+        setUserCity()
     }
     
     func setupData() {
         Task {
             try await weatherKitManager.fetchWeather(location: testLocation) { current, hourly, daily in
-                //currentWeatherView.setData(weather: weatherKitManager.getCurrentWeather()!)
-                //hourlyWeatherArray = weatherKitManager.getHourlyWeather()!
-                //dailyWeatherArray = weatherKitManager.getDailyWeather()!
-                self.currentWeatherView.setData(weather: current!)
+
                 self.hourlyWeatherArray = hourly!
                 self.dailyWeatherArray = daily!
-                print(self.dailyWeatherArray!)
-                
+                                
                 DispatchQueue.main.async {
-                    //self.currentWeatherView.setNeedsLayout()
-                    //self.currentWeatherView.setData(weather: current!)
+                    self.currentWeatherView.setData(weather: current!)
                     self.collectionView.reloadData()
                     self.tableView.reloadData()
                 }
@@ -101,16 +92,27 @@ final class MainViewController: UIViewController {
         }
     }
     
-    // MARK: - AutoLayout
+    func setUserCity() {
+        DispatchQueue.global().async {
+            UserCity.locationToString(self.testLocation, type: .long) { locationString in
+                
+                DispatchQueue.main.async {
+                    self.currentWeatherView.setLocationName(locationString)
+                }
+            }
+        }
+    }
+    
+    // MARK: - Helpers
     func setupView() {
         if !isSearched {
             setNavigationBar()
         } else {
             setSearchResultNavigationBar()
         }
-    
-        view.backgroundColor = .lightGray
+        configureGradientLayer()
         tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         collectionView.backgroundColor = .clear
         view.addSubview(currentWeatherView)
         view.addSubview(tableView)
@@ -118,7 +120,6 @@ final class MainViewController: UIViewController {
     }
     
     func setNavigationBar() {
-        // 내비게이션바 설정
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
         navigationController?.navigationBar.standardAppearance = navigationBarAppearance
@@ -126,12 +127,10 @@ final class MainViewController: UIViewController {
 
         navigationItem.scrollEdgeAppearance = navigationBarAppearance
         navigationItem.standardAppearance = navigationBarAppearance
+        navigationController?.navigationBar.shadowImage = nil
 
         navigationController?.setNeedsStatusBarAppearanceUpdate()
-                
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.backgroundColor = .white
-        
+                        
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.bullet"), style: .plain, target: self, action: #selector(listButtonTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
 
@@ -143,12 +142,12 @@ final class MainViewController: UIViewController {
         navigationController?.navigationBar.standardAppearance = navigationBarAppearance
         
         navigationItem.standardAppearance = navigationBarAppearance
+        //navigationController?.navigationBar.shadowImage = nil
+
         navigationController?.setNeedsStatusBarAppearanceUpdate()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.backgroundColor = .white
+        //navigationController?.navigationBar.backgroundColor = .white
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기", style: .done, target: self, action: #selector(resultDismiss))
-        // TODO: - Add save button, actions for saving new location
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "추가", style: .plain, target: self, action: #selector(saveButtonTapped))
         
         title = "검색 지역 날씨"
@@ -160,7 +159,6 @@ final class MainViewController: UIViewController {
         
         currentWeatherView.snp.makeConstraints { make in
             make.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
-            //make.height.equalTo(250)
         }
         
         collectionView.snp.makeConstraints { make in
@@ -191,8 +189,18 @@ final class MainViewController: UIViewController {
     
     @objc func saveButtonTapped() {
         print("Realm is located at:", localRealm.configuration.fileURL!)
+        
+        UserCity.locationToString(testLocation, type: .short) { string in
+            guard let cityName = string else { return }
+            
+            let task = UserCity(cityName: cityName, latitude: self.testLocation.coordinate.latitude, longitude: self.testLocation.coordinate.longitude)
+            try! self.localRealm.write {
+                self.localRealm.add(task)
+                
+                //dismiss, isSearched = false, 메인화면 리로드
+            }
+        }
 
-        //let task = UserCity(cityName: <#T##String#>, latitude: <#T##Double#>, longitude: <#T##Double#>)
     }
 }
 
@@ -246,16 +254,3 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         return 1
     }
 }
-
-// MARK: - PreviewProvider
-#if DEBUG
-import SwiftUI
-
-struct MainVCPreview: PreviewProvider {
-
-    static var previews: some View {
-        // view controller using programmatic UI
-        MainViewController().toPreview()
-    }
-}
-#endif

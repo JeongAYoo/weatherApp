@@ -57,7 +57,6 @@ final class TutorialViewController: UIViewController {
     }
     
     func setConstraints() {
-        //left, right -> leading, trailing 으로 추후 수정하기
         doneButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(70)
             make.trailing.equalToSuperview().offset(-20)
@@ -80,7 +79,6 @@ final class TutorialViewController: UIViewController {
             make.leading.equalTo(20)
             make.trailing.equalTo(-20)
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
-            //make.height.equalTo(60)
         }
         
         pageControl.snp.makeConstraints { make in

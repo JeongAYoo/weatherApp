@@ -13,9 +13,10 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     private var hourLabel: UILabel = {
         let label = UILabel()
-        label.text = "오후 3시"
+        label.text = ""
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 17)
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 14)
         
         return label
     }()
@@ -30,9 +31,9 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
     
     private var temperatureLabel: UILabel = {
         let label = UILabel()
-        label.text = "23C"
+        label.text = ""
         label.textAlignment = .center
-        label.textColor = .darkGray
+        label.textColor = .black
         label.font = .systemFont(ofSize: 17)
         label.adjustsFontSizeToFitWidth = true
         
@@ -49,6 +50,8 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
+    let formatter = TemperatureFormatter().formatter
+
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,14 +62,12 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK: - AutoLayout
+    // MARK: - Helpers
     func setupView() {
-        self.backgroundColor = .clear
-        contentView.layer.backgroundColor = UIColor.white.cgColor
-        contentView.layer.cornerRadius = 5
+        //self.backgroundColor = .init(white: 1, alpha: 0.8)
+        contentView.layer.backgroundColor = UIColor(white: 1, alpha: 0.8).cgColor
+        contentView.layer.cornerRadius = 10
         contentView.layer.masksToBounds = false
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.lightGray.cgColor
         
         addSubview(stackView)
     }
@@ -80,7 +81,7 @@ final class HourlyCollectionViewCell: UICollectionViewCell {
     func setData(weather: HourlyWeather) {
         hourLabel.text = weather.date
         weatherImageView.image = UIImage(systemName: weather.symbolName)
-        temperatureLabel.text = String(Int(round(weather.temperature))) + "°C"
+        temperatureLabel.text = formatter.string(from: weather.temperature)
     }
 }
 

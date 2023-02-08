@@ -17,7 +17,6 @@ final class SearchResultViewController: UIViewController {
     private var searchCompleter = MKLocalSearchCompleter() /// 검색을 도와주는 변수
     private var searchResults = [MKLocalSearchCompletion]() /// 검색 결과를 담는 변수
     
-    
     var searchTerm: String? {
         didSet {
             searchCompleter.queryFragment = searchTerm ?? ""
@@ -47,7 +46,7 @@ final class SearchResultViewController: UIViewController {
     
     func setupSearchCompleter() {
         searchCompleter.delegate = self
-        searchCompleter.resultTypes = .address /// resultTypes은 검색 유형인데 address는 주소를 의미
+        searchCompleter.resultTypes = .address // resultTypes은 검색 유형인데 address는 주소를 의미
     }
     
     
@@ -55,15 +54,15 @@ final class SearchResultViewController: UIViewController {
 
 // MARK: - MKLocalSearchCompleterDelegate
 extension SearchResultViewController: MKLocalSearchCompleterDelegate {
-    // 자동완성 완료 시에 결과를 받는 함수
+    /// 자동완성 완료 시에 결과를 받는 함수
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
         // completer.results를 통해 검색한 결과를 searchResults에 담아줌
         searchResults = completer.results
         tableView.reloadData()
     }
     
+    /// 에러 확인
     func completer(_ completer: MKLocalSearchCompleter, didFailWithError error: Error) {
-        // 에러 확인
         print(error.localizedDescription)
     }
 }
@@ -104,7 +103,6 @@ extension SearchResultViewController: UITableViewDelegate {
             //print(placeMark.title)
             
             let vc = MainViewController()
-            
             let navVC = UINavigationController(rootViewController: vc)
         
             vc.testLocation = CLLocation(latitude: searchLatitude, longitude: searchLongtitude)

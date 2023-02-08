@@ -14,6 +14,7 @@ final class CurrentWeatherView: UIView {
     private let locationNameLabel: UILabel = {
         let label = UILabel()
         label.text = ""
+        label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 18)
@@ -24,6 +25,7 @@ final class CurrentWeatherView: UIView {
     private let weatherImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "cloud.sun")
+        imageView.tintColor = .white
         imageView.contentMode = .scaleAspectFit
         
         return imageView
@@ -32,9 +34,9 @@ final class CurrentWeatherView: UIView {
     private let currentTempLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        //label.numberOfLines = 0
+        label.textColor = .white
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 28)
+        label.font = .boldSystemFont(ofSize: 32)
         
         return label
     }()
@@ -42,9 +44,9 @@ final class CurrentWeatherView: UIView {
     private let conditionLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        //label.numberOfLines = 0
+        label.textColor = .white
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 17)
+        label.font = .boldSystemFont(ofSize: 18)
         
         return label
     }()
@@ -52,7 +54,7 @@ final class CurrentWeatherView: UIView {
     private let lowHighTempLabel: UILabel = {
         let label = UILabel()
         label.text = ""
-        //label.numberOfLines = 0
+        label.textColor = .white
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
         
@@ -62,6 +64,7 @@ final class CurrentWeatherView: UIView {
     private let humidityLabel: UILabel = {
         let label = UILabel()
         label.text = "습도"
+        label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
@@ -72,6 +75,7 @@ final class CurrentWeatherView: UIView {
     private let windSpeedLabel: UILabel = {
         let label = UILabel()
         label.text = "풍속"
+        label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
@@ -82,6 +86,7 @@ final class CurrentWeatherView: UIView {
     private let uvIndexLabel: UILabel = {
         let label = UILabel()
         label.text = "자외선"
+        label.textColor = .white
         label.numberOfLines = 0
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 17)
@@ -139,9 +144,11 @@ final class CurrentWeatherView: UIView {
         
         return stackView
     }()
+    
+    let formatter = TemperatureFormatter().formatter
+
     // MARK: - Initializer
     override init(frame: CGRect) {
-        //print(#function)
         super.init(frame: frame)
 
         setupView()
@@ -151,16 +158,16 @@ final class CurrentWeatherView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    // MARK: - AutoLayout
-    // 오토레이아웃 정하는 정확한 시점
+    
+    // MARK: - Helpers
     override func updateConstraints() {
         setConstraints()
         super.updateConstraints()
     }
     
     func setupView() {
-        self.backgroundColor = .white
-        self.layer.cornerRadius = 5.0
+        configureGradientLayer()
+        self.layer.cornerRadius = 20
         self.clipsToBounds = true
         
         [humidityLabel, windSpeedLabel, uvIndexLabel].forEach { UILabel in
@@ -192,23 +199,25 @@ final class CurrentWeatherView: UIView {
         }
         
         upperStackView.snp.makeConstraints { make in
-            make.height.equalTo(50) // 비율이 나은가?
+            make.height.equalTo(50)
         }
     }
     
     func setData(weather: CurrentWeather) {
-        DispatchQueue.main.async {
-            self.locationNameLabel.text = weather.locationString
-            self.weatherImageView.image = UIImage(systemName: weather.symbolName)
-            self.currentTempLabel.text = String(weather.temperature) + "°C"
-            self.conditionLabel.text = weather.condition
-            self.lowHighTempLabel.text = String(Int(round(weather.lowTemperature))) + "°C / " +
-                String(Int(round(weather.highTemperature))) + "°C"
-            self.humidityLabel.text = "습도\n" + String(weather.humidity)
-            self.windSpeedLabel.text = "풍속\n" + String(weather.windSpeed)
-            self.uvIndexLabel.text = "자외선\n" + String(weather.uvIndex)
-            self.updateTimeLabel.text! = "업데이트 시각: " + weather.date
-        }
+        self.weatherImageView.image = UIImage(systemName: weather.symbolName)
+        self.currentTempLabel.text = formatter.string(from: weather.temperature)
+        self.conditionLabel.text = weather.condition
+        self.lowHighTempLabel.text = formatter.string(from: weather.lowTemperature) + " / " +
+            formatter.string(from: weather.highTemperature)
+        self.humidityLabel.text = "습도\n" + String(weather.humidity)
+        self.windSpeedLabel.text = "풍속\n" + String(weather.windSpeed)
+        self.uvIndexLabel.text = "자외선\n" + String(weather.uvIndex)
+        self.updateTimeLabel.text! = "업데이트 시각: " + weather.date
+    }
+    
+    func setLocationName(_ locationName: String?) {
+        self.locationNameLabel.text = locationName
+        print(locationName!)
     }
     
 }

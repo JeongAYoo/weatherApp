@@ -20,16 +20,14 @@
 		0765B21529227312009AC8A8 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B21429227312009AC8A8 /* SearchViewController.swift */; };
 		0765B2182923CC1A009AC8A8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0765B2172923CC1A009AC8A8 /* SnapKit */; };
 		0765B21A292B898C009AC8A8 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765B219292B898C009AC8A8 /* TutorialViewController.swift */; };
-		0765B21D292B90D0009AC8A8 /* searchMockUpCut.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */; };
-		0765B21E292B90D0009AC8A8 /* mainMockUpCut.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */; };
 		0778FC0429880CB5002410DA /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0778FC0329880CB5002410DA /* Realm */; };
 		0778FC0629880CB5002410DA /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0778FC0529880CB5002410DA /* RealmSwift */; };
 		0778FC082988116F002410DA /* UserCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0778FC072988116F002410DA /* UserCity.swift */; };
+		078FC4B92992AE8C00E008EC /* TemperatureFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078FC4B82992AE8C00E008EC /* TemperatureFormatter.swift */; };
 		0799C59C2934C7C000E3FDC7 /* AuthCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */; };
 		07B0400E294A440D00D5E3B6 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B0400D294A440D00D5E3B6 /* WeatherModel.swift */; };
-		07B04010294CB38000D5E3B6 /* UILabelSpacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B0400F294CB38000D5E3B6 /* UILabelSpacing.swift */; };
+		07B04010294CB38000D5E3B6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B0400F294CB38000D5E3B6 /* Extensions.swift */; };
 		07B92759293BE08F009601F5 /* PreviewUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B92758293BE08F009601F5 /* PreviewUI.swift */; };
-		07B9275E293BE274009601F5 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9275D293BE274009601F5 /* MainView.swift */; };
 		07B9278D293E2529009601F5 /* WeatherKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B9278C293E2529009601F5 /* WeatherKitManager.swift */; };
 		07E71C682943ABB000D4C56C /* CurrentWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E71C672943ABB000D4C56C /* CurrentWeatherView.swift */; };
 		07E71C6C2943ABCF00D4C56C /* DailyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E71C6B2943ABCF00D4C56C /* DailyTableViewCell.swift */; };
@@ -50,14 +48,12 @@
 		0765B212292272E8009AC8A8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0765B21429227312009AC8A8 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0765B219292B898C009AC8A8 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
-		0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchMockUpCut.png; sourceTree = "<group>"; };
-		0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainMockUpCut.png; sourceTree = "<group>"; };
 		0778FC072988116F002410DA /* UserCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCity.swift; sourceTree = "<group>"; };
+		078FC4B82992AE8C00E008EC /* TemperatureFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureFormatter.swift; sourceTree = "<group>"; };
 		0799C59B2934C7C000E3FDC7 /* AuthCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCheckViewController.swift; sourceTree = "<group>"; };
 		07B0400D294A440D00D5E3B6 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
-		07B0400F294CB38000D5E3B6 /* UILabelSpacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelSpacing.swift; sourceTree = "<group>"; };
+		07B0400F294CB38000D5E3B6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		07B92758293BE08F009601F5 /* PreviewUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewUI.swift; sourceTree = "<group>"; };
-		07B9275D293BE274009601F5 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		07B9278A293E23C2009601F5 /* weatherApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = weatherApp.entitlements; sourceTree = "<group>"; };
 		07B9278C293E2529009601F5 /* WeatherKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherKitManager.swift; sourceTree = "<group>"; };
 		07E71C672943ABB000D4C56C /* CurrentWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherView.swift; sourceTree = "<group>"; };
@@ -99,40 +95,47 @@
 		0765B1F629224832009AC8A8 /* weatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				078FC4B72992AE7400E008EC /* Helper */,
 				07B9278A293E23C2009601F5 /* weatherApp.entitlements */,
 				0765B1F729224832009AC8A8 /* AppDelegate.swift */,
 				0765B1F929224832009AC8A8 /* SceneDelegate.swift */,
-				07B92757293BE07D009601F5 /* Extensions */,
+				07E3E56D29902A9E009FC7B5 /* API */,
+				07B92757293BE07D009601F5 /* Utils */,
 				07B9278B293E24EF009601F5 /* Model */,
 				07B9275B293BE1AB009601F5 /* View */,
 				07B9275C293BE1CF009601F5 /* Controller */,
-				0765B20229224833009AC8A8 /* LaunchScreen.storyboard */,
 				0765B1FD29224832009AC8A8 /* Main.storyboard */,
 				0765B20029224833009AC8A8 /* Assets.xcassets */,
-				0765B21C292B90D0009AC8A8 /* mainMockUpCut.png */,
-				0765B21B292B90D0009AC8A8 /* searchMockUpCut.png */,
 				0765B20529224833009AC8A8 /* Info.plist */,
 			);
 			path = weatherApp;
 			sourceTree = "<group>";
 		};
-		07B92757293BE07D009601F5 /* Extensions */ = {
+		078FC4B72992AE7400E008EC /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				078FC4B82992AE8C00E008EC /* TemperatureFormatter.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		07B92757293BE07D009601F5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				07B92758293BE08F009601F5 /* PreviewUI.swift */,
-				07B0400F294CB38000D5E3B6 /* UILabelSpacing.swift */,
+				07B0400F294CB38000D5E3B6 /* Extensions.swift */,
 			);
-			path = Extensions;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		07B9275B293BE1AB009601F5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				07B9275D293BE274009601F5 /* MainView.swift */,
 				07E71C672943ABB000D4C56C /* CurrentWeatherView.swift */,
 				07E71C6D2943DDF600D4C56C /* HourlyCollectionViewCell.swift */,
 				07E71C6B2943ABCF00D4C56C /* DailyTableViewCell.swift */,
 				075B5EDE29814A00000ED108 /* SearchResultTableViewCell.swift */,
+				0765B20229224833009AC8A8 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -153,11 +156,18 @@
 		07B9278B293E24EF009601F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				07B9278C293E2529009601F5 /* WeatherKitManager.swift */,
 				07B0400D294A440D00D5E3B6 /* WeatherModel.swift */,
 				0778FC072988116F002410DA /* UserCity.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		07E3E56D29902A9E009FC7B5 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				07B9278C293E2529009601F5 /* WeatherKitManager.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,9 +241,7 @@
 			files = (
 				0765B20F292271EC009AC8A8 /* Main.storyboard in Resources */,
 				0765B20429224833009AC8A8 /* LaunchScreen.storyboard in Resources */,
-				0765B21E292B90D0009AC8A8 /* mainMockUpCut.png in Resources */,
 				0765B20129224833009AC8A8 /* Assets.xcassets in Resources */,
-				0765B21D292B90D0009AC8A8 /* searchMockUpCut.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,11 +253,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0765B213292272E8009AC8A8 /* SettingViewController.swift in Sources */,
-				07B9275E293BE274009601F5 /* MainView.swift in Sources */,
 				0765B1FC29224832009AC8A8 /* MainViewController.swift in Sources */,
 				075B5EDF29814A00000ED108 /* SearchResultTableViewCell.swift in Sources */,
 				07E71C682943ABB000D4C56C /* CurrentWeatherView.swift in Sources */,
 				0799C59C2934C7C000E3FDC7 /* AuthCheckViewController.swift in Sources */,
+				078FC4B92992AE8C00E008EC /* TemperatureFormatter.swift in Sources */,
 				0765B21529227312009AC8A8 /* SearchViewController.swift in Sources */,
 				0778FC082988116F002410DA /* UserCity.swift in Sources */,
 				0765B1F829224832009AC8A8 /* AppDelegate.swift in Sources */,
@@ -261,7 +269,7 @@
 				0765B1FA29224832009AC8A8 /* SceneDelegate.swift in Sources */,
 				07B9278D293E2529009601F5 /* WeatherKitManager.swift in Sources */,
 				075B5EDD29813FF9000ED108 /* SearchResultViewController.swift in Sources */,
-				07B04010294CB38000D5E3B6 /* UILabelSpacing.swift in Sources */,
+				07B04010294CB38000D5E3B6 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,8 +527,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift";
 			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.35.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

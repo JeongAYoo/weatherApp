@@ -10,7 +10,7 @@ import CoreLocation
 
 final class AuthCheckViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Properties
-    // 인증 허용 질문 레이블
+    /// 인증 허용 질문 레이블
     private let askAuthLabel: UILabel = {
         let label = UILabel()
         label.text = "현재 위치를 기반으로\n날씨 정보를 확인하시겠어요?"
@@ -21,7 +21,7 @@ final class AuthCheckViewController: UIViewController, CLLocationManagerDelegate
         return label
     }()
     
-    // 허용 버튼
+    /// 허용 버튼
     private let yesButton: UIButton = {
         let button = UIButton()
         button.setTitle("네, 현재 위치로 확인할게요.", for: .normal)
@@ -33,7 +33,7 @@ final class AuthCheckViewController: UIViewController, CLLocationManagerDelegate
         return button
     }()
     
-    // 불허용 버튼
+    /// 불허용 버튼
     private let noButton: UIButton = {
         let button = UIButton()
         button.setTitle("아니요, 지역을 지정할게요.", for: .normal)
@@ -45,7 +45,6 @@ final class AuthCheckViewController: UIViewController, CLLocationManagerDelegate
         return button
     }()
     
-    // 버튼 2개 담을 스택뷰
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -59,6 +58,7 @@ final class AuthCheckViewController: UIViewController, CLLocationManagerDelegate
     var locationManager: CLLocationManager!
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +74,6 @@ final class AuthCheckViewController: UIViewController, CLLocationManagerDelegate
         stackView.addArrangedSubview(yesButton)
         stackView.addArrangedSubview(noButton)
         
-        // 레이아웃
         askAuthLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-50)
@@ -91,12 +90,12 @@ final class AuthCheckViewController: UIViewController, CLLocationManagerDelegate
         }
     }
     
-    // no 버튼 클릭시 검색 화면으로 이동
+    /// 검색 화면으로 이동하는 함수
     @objc func noButtonClicked() {
         presentSearchView()
     }
     
-    // yes 버튼 클릭시 위치 권한 허용 묻기
+    /// 위치 권한 허용 묻는 함수
     @objc func getLocationUsagePermission() {
         locationManager = CLLocationManager()
         

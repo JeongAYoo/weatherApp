@@ -49,7 +49,9 @@ final class DailyTableViewCell: UITableViewCell {
         return stackView
     }()
     
-    // MARK: - Initializers
+    let formatter = TemperatureFormatter().formatter
+    
+    // MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -79,16 +81,12 @@ final class DailyTableViewCell: UITableViewCell {
     }
     
     func setupView() {
-        //self.layer.shadowColor = UIColor.black.cgColor
-        //self.layer.shadowOpacity = 0.5
-        //self.layer.shadowRadius = 5
-        //self.layer.shadowOffset = CGSize(width: 0, height: 5)
         self.backgroundColor = .clear
         contentView.layer.backgroundColor = UIColor.white.cgColor
-        contentView.layer.cornerRadius = 5
+        contentView.layer.cornerRadius = 10
         contentView.layer.masksToBounds = false
-        contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.lightGray.cgColor
+        //contentView.layer.borderWidth = 1
+        //contentView.layer.borderColor = UIColor.lightGray.cgColor
         
         self.addSubview(stackView)
         
@@ -123,7 +121,8 @@ final class DailyTableViewCell: UITableViewCell {
     func setData(weather: DailyWeather) {
         weatherImageView.image = UIImage(systemName: weather.symbolName)
         dayLabel.text = weather.date
-        lowHighTempLabel.text = String(weather.lowTemperature) + " / " + String(weather.highTemperture)
+        
+        lowHighTempLabel.text = formatter.string(from: weather.lowTemperature) + " / " + formatter.string(from: weather.highTemperture)
     }
     
 }
