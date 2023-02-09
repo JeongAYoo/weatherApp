@@ -105,7 +105,7 @@ extension SearchResultViewController: UITableViewDelegate {
             let vc = MainViewController()
             let navVC = UINavigationController(rootViewController: vc)
         
-            vc.testLocation = CLLocation(latitude: searchLatitude, longitude: searchLongtitude)
+            vc.currentLocation = CLLocation(latitude: searchLatitude, longitude: searchLongtitude)
             vc.isSearched = true
 
             self.present(navVC, animated: true, completion: nil)

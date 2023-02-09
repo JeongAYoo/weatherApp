@@ -126,22 +126,3 @@ final class DailyTableViewCell: UITableViewCell {
     }
     
 }
-
-// MARK: - PreviewProvider
-import SwiftUI
-
-struct CustomCellPreview: PreviewProvider {
-    static var previews: some View {
-        CellPreviewContainer().frame(width: UIScreen.main.bounds.width - 20, height: 70, alignment: .center)
-    }
-    
-    struct CellPreviewContainer: UIViewRepresentable {
-        func makeUIView(context: UIViewRepresentableContext<CustomCellPreview.CellPreviewContainer>) -> UITableViewCell {
-            return DailyTableViewCell()
-        }
-        func updateUIView(_ uiView: UITableViewCell, context: UIViewRepresentableContext<CustomCellPreview.CellPreviewContainer>) {
-        }
-        
-        typealias UIViewType = UITableViewCell
-    }
-}

@@ -10,6 +10,7 @@ import SnapKit
 import CoreLocation
 import WeatherKit
 import RealmSwift
+import SideMenu
 
 final class MainViewController: UIViewController {
     // MARK: - Properties
@@ -42,7 +43,7 @@ final class MainViewController: UIViewController {
     
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
-    var testLocation = CLLocation(latitude: 37.5326, longitude: 127.0246) {
+    var currentLocation = CLLocation(latitude: 37.5326, longitude: 127.0246) {
         didSet {
             setupData()
             setUserCity()
@@ -78,7 +79,7 @@ final class MainViewController: UIViewController {
     
     func setupData() {
         Task {
-            try await weatherKitManager.fetchWeather(location: testLocation) { current, hourly, daily in
+            try await weatherKitManager.fetchWeather(location: currentLocation) { current, hourly, daily in
 
                 self.hourlyWeatherArray = hourly!
                 self.dailyWeatherArray = daily!
@@ -94,7 +95,7 @@ final class MainViewController: UIViewController {
     
     func setUserCity() {
         DispatchQueue.global().async {
-            UserCity.locationToString(self.testLocation, type: .long) { locationString in
+            UserCity.locationToString(self.currentLocation, type: .long) { locationString in
                 
                 DispatchQueue.main.async {
                     self.currentWeatherView.setLocationName(locationString)
@@ -155,8 +156,6 @@ final class MainViewController: UIViewController {
     }
     
     func setConstraints() {
-        print(#function)
-        
         currentWeatherView.snp.makeConstraints { make in
             make.leading.trailing.top.equalTo(self.view.safeAreaLayoutGuide).inset(10)
         }
@@ -175,7 +174,9 @@ final class MainViewController: UIViewController {
     }
     // MARK: - Action
     @objc func listButtonTapped() {
-        
+        let list = SideMenuNavigationController(rootViewController: SideMenuViewController())
+        list.leftSide = true
+        self.present(list, animated: true)
     }
     
     @objc func addButtonTapped() {
@@ -190,10 +191,10 @@ final class MainViewController: UIViewController {
     @objc func saveButtonTapped() {
         print("Realm is located at:", localRealm.configuration.fileURL!)
         
-        UserCity.locationToString(testLocation, type: .short) { string in
+        UserCity.locationToString(currentLocation, type: .short) { string in
             guard let cityName = string else { return }
             
-            let task = UserCity(cityName: cityName, latitude: self.testLocation.coordinate.latitude, longitude: self.testLocation.coordinate.longitude)
+            let task = UserCity(cityName: cityName, latitude: self.currentLocation.coordinate.latitude, longitude: self.currentLocation.coordinate.longitude)
             try! self.localRealm.write {
                 self.localRealm.add(task)
                 
@@ -208,7 +209,6 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(#function)
         return 10
     }
     
