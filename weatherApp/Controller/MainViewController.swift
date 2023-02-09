@@ -53,6 +53,7 @@ final class MainViewController: UIViewController {
     var hourlyWeatherArray: [HourlyWeather]?
     var dailyWeatherArray: [DailyWeather]?
     var weatherKitManager = WeatherKitManager.shared
+    var mainLocation = MainLocation.shared
     private var geocoder: CLGeocoder!
     var isSearched: Bool = false
     let localRealm = try! Realm()
@@ -252,5 +253,12 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
+    }
+}
+
+extension MainViewController: SideMenuNavigationControllerDelegate {
+    func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        guard let newLocation = mainLocation.value else { return }
+        currentLocation = newLocation
     }
 }

@@ -15,6 +15,7 @@ final class SideMenuViewController: UIViewController {
     private let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let localRealm = try! Realm()
     var tasks: Results<UserCity>!
+    var mainLocation = MainLocation.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +81,7 @@ extension SideMenuViewController: UITableViewDelegate {
         if indexPath.section == 0 {
             present(SettingViewController(), animated: true)
         } else {
-            let location = CLLocation(latitude: tasks[indexPath.row].latitude, longitude: tasks[indexPath.row].longitude)
+            mainLocation.value = CLLocation(latitude: tasks[indexPath.row].latitude, longitude: tasks[indexPath.row].longitude)
             dismiss(animated: true)
         }
         
